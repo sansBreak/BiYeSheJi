@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="../static/h-ui.admin/css/style.css"/>
     <![endif]-->
 
-    <title>教材管理系统后台——学生</title>
+    <title>教材管理系统后台——老师</title>
 </head>
 <body>
 
@@ -47,7 +47,7 @@
 
             <nav id="Hui-userbar" class="nav navbar-nav navbar-userbar hidden-xs">
                 <ul class="cl">
-                    <li>身份——學生 &nbsp&nbsp</li>
+                    <li>身份——老师 &nbsp&nbsp</li>
                     <li class="dropDown dropDown_hover">
                         <a href="#" class="dropDown_A">admin <i class="Hui-iconfont">&#xe6d5;</i></a>
                         <ul class="dropDown-menu menu radius box-shadow">
@@ -81,19 +81,37 @@
 <aside class="Hui-aside">
     <div class="menu_dropdown bk_2">
 
-        <dl id="menu-charge">
-            <dt><i class="Hui-iconfont">&#xe616;</i> 收费信息<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+        <dl id="menu-stu-info">
+            <dt><i class="Hui-iconfont">&#xe616;</i> 学生信息<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a data-href="charge/index.html" data-title="收费详单" href="javascript:void(0)">查看收费详单</a></li>
+                    <li><a data-href="students-info.html" data-title="查看学生信息" href="javascript:void(0)">查看学生信息</a></li>
                 </ul>
             </dd>
         </dl>
-        <dl id="menu-collection">
-            <dt><i class="Hui-iconfont">&#xe616;</i> 领书信息<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+        <dl id="menu-bookManage">
+            <dt><i class="Hui-iconfont">&#xe616;</i> 教材征订<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a data-href="receive_book/index.html" data-title="领书信息" href="javascript:void(0)">查看领书详情</a></li>
+                    <li><a data-href="book_sub/book-info.html" data-title="查看书籍信息" href="javascript:void(0)">查看书籍信息(查、下订单)</a></li>
+                </ul>
+                <!--申请教材功能，在查看库存时，直接添加-->
+                <!--<ul>
+                    <li><a data-href="book_management/applyBooks.html" data-title="申请教材" href="javascript:void(0)">申请教材（增）</a></li>
+                </ul>-->
+                <ul>
+                    <li><a data-href="book_sub/sub-order.html" data-title="查看申请订单" href="javascript:void(0)">查看申请订单</a></li>
+                </ul>
+                <ul>
+                    <li><a data-href="book_sub/unsub.html" data-title="退订教材" href="javascript:void(0)">退订教材</a></li>
+                </ul>
+            </dd>
+        </dl>
+        <dl id="menu-bookSub">
+            <dt><i class="Hui-iconfont">&#xe616;</i> 申请购置教材<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+            <dd>
+                <ul>
+                    <li><a data-href="purchase-books.html" data-title="申请购置教材" href="javascript:void(0)">申请购置教材</a></li>
                 </ul>
             </dd>
         </dl>

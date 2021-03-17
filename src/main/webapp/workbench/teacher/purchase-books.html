@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<head>
+    <!--
+        <link rel="stylesheet" type="text/css" href="../static/h-ui/css/H-ui.min.css"/>
+    -->
+    <link rel="stylesheet" type="text/css" href="../static/h-ui.admin/css/H-ui.admin.css"/>
+    <link rel="stylesheet" type="text/css" href="../lib/Hui-iconfont/1.0.8/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/h-ui.admin/skin/default/skin.css" id="skin"/>
+    <![endif]-->
+
+    <!-- 载入bootstrap的css -->
+    <link rel="stylesheet" type="text/css" href="../../bootstrap/css/bootstrap.css"/>
+    <!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
+    <script src="../../js/jquery-3.4.1.js"></script>
+    <!-- 包括所有已编译的插件 -->
+    <script src="../../bootstrap/js/bootstrap.js"></script>
+    <!--引入自定义的css文件-->
+    <link rel="stylesheet" type="text/css" href="../static/h-ui.admin/css/style.css"/>
+
+    <meta charset="UTF-8">
+    <title>申请购置教材</title>
+
+</head>
+
+<body>
+<div>
+    <h2 style="text-align: center;">申请购置教材</h2>
+</div>
+
+
+<div class="page-container">
+    <!--一个表单-->
+    <!-- 表单中的栅格系统不用row  而是用form-horizontal：水平排列的表单 加到form元素中   -->
+    <div class="col-md-6 col-md-offset-2">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="bookname">教材名称 <sup>*</sup></label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="bookname" placeholder="请输入教材名称"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="publisher">出版社 <sup>*</sup></label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="publisher" placeholder="请输入出版社名"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="ISBNnumber">ISBN号 <sup>*</sup></label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="ISBNnumber" placeholder="请输入ISBN号"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="booknumber" class="col-md-3 control-label">申请数量 <sup>*</sup></label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="booknumber" placeholder="请输入申请数量"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="applyclass" class="col-md-3 control-label">申请班级 <sup>*</sup></label>
+                <div class="col-md-9">
+                    <select class="form-control" id="applyclass">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="applicant" class="col-md-3 control-label">申请人</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="applicant" placeholder="自动填写"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="comments" class="col-md-3 control-label">附言</label>
+                <div class="col-md-9">
+                    <textarea class="form-control" id="comments"></textarea>
+                </div>
+            </div>
+            <div class="col-md-10 col-md-offset-2">
+                <input type="button" class="btn btn-success" value="提交">
+            </div>
+        </form>
+    </div>
+
+
+</div>
+</body>
+
+</html>

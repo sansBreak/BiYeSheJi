@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="../../static/h-ui/css/H-ui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../../static/h-ui.admin/css/H-ui.admin.css"/>
+    <link rel="stylesheet" type="text/css" href="../../lib/Hui-iconfont/1.0.8/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="../../static/h-ui.admin/skin/default/skin.css" id="skin"/>
+    <link rel="stylesheet" type="text/css" href="../../static/h-ui.admin/css/style.css"/>
+    <![endif]-->
+
+    <meta charset="UTF-8">
+    <title>退订教材</title>
+
+    <!-- 载入bootstrap的css -->
+    <link rel="stylesheet" type="text/css" href="../../../bootstrap/css/bootstrap.css"/>
+    <!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
+    <script src="../../../js/jquery-3.4.1.js"></script>
+    <!-- 包括所有已编译的插件 -->
+    <script src="../../../bootstrap/js/bootstrap.js"></script>
+
+    <style type="text/css">
+        .table tbody tr td{
+            vertical-align: middle;
+        }
+    </style>
+
+</head>
+<body>
+<div>
+    <h2 style="text-align: center;">老师 退订教材</h2>
+</div>
+
+<div class="page-container">
+    <!--表格正文-->
+    <div class="mt-5">
+        <table class="table  table-bordered table-hover table-striped ">
+            <caption>退订教材</caption>
+            <thead>
+            <tr class="text-c bc-blue">
+                <th>订单编号</th>
+                <th>课程名称</th>
+                <th>教材名称</th>
+                <th>教材单价</th>
+                <th>出版社</th>
+                <th>申请老师</th>
+                <th>申请数量</th>
+                <th>领书时间</th>
+                <th>状态</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr class="text-c bc-blue">
+                <td>1</td>
+                <td>面向对象程序设计基础</td>
+                <td>Java从入门到精通</td>
+                <td>69.80元</td>
+                <td>清华大学出版社</td>
+                <td>奥西里斯</td>
+                <td>45</td>
+                <td>2020.09.05</td>
+                <td style="background-color: #ef4844">未审批</td>
+                <td>
+                    <button class="btn btn-warning">退订</button>
+                </td>
+            </tr>
+            <tr class="text-c ">
+                <td>2</td>
+                <td>C语言程序设计Ⅱ</td>
+                <td>c语言教程</td>
+                <td>70.0元</td>
+                <td>高等教育出版社	</td>
+                <td>奥西里斯</td>
+                <td>50</td>
+                <td>2020.09.05</td>
+                <td style="background-color: #1cba63">审批通过</td>
+                <td>
+                    <button class="btn btn-warning">退订</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+</body>
+</html>
