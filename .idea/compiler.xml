@@ -9,5 +9,8 @@
         <module name="BiYeSheJi" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="jczd" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>
