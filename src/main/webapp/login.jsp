@@ -36,19 +36,16 @@
                 window.top.location=window.location;
             }
 
-            //页面加载完毕后，将用户文本框中的内容清空
+            //页面加载完毕后，将用户文本框中的内容清空，单选按钮复位
             $("#loginAct").val("");
             $("#loginPwd").val("");
-            /*$("#radio-stu").checked();*/
-            $("input[name=identity]:eq(0)").prop("checked",'checked');
-
+            $("input[name=identity-radio]:eq(0)").prop("checked",'checked');
 
             //页面打开后，自动为用户的文本框获得焦点
             $("#loginAct").focus();
 
             //为登录按钮绑定事件，执行登录操作
             $("#submitBtn").click(function () {
-                alert("登录按钮被单击了！");
                 login();
             })
 
@@ -64,6 +61,10 @@
 
         //自定义方法，写在$(function(){})的外面
         function login() {
+            /*取用户登录身份*/
+            $xz=$("input[name=identity-radio]:checked");
+            var identity=$xz.val();
+
             //首先验证账号密码不能为空
             /*取得账号密码，使用$.trim(文本)去掉左右空格*/
             var loginAct = $.trim($("#loginAct").val());
@@ -78,8 +79,9 @@
             $.ajax({
                 url:"user/login.do",
                 data:{
+                    "identity":identity,
                     "loginAct":loginAct,
-                    "loginPwd":loginPwd
+                    "loginPwd":loginPwd,
                 },
                 type:"post",
                 dataType:"json",
@@ -89,8 +91,8 @@
                     * */
                     //如果登录成功，跳转到欢迎页
                     if (data.success){
-                        /*window.location.href = "workbench/index.jsp";*/
-                        alert("登录成功！")
+                        window.location.href = "workbench/student/index.html";
+                        alert("登录成功！");
 
                         //如果登录失败，则显示错误信息
                     }else{
@@ -135,13 +137,13 @@
                     <label class="control-label  form-inline col-md-3">用户身份</label>
                     <div class="col-md-8">
                         <label class="radio-inline">
-                            <input type="radio" name="identity" id="radio-stu" value="option1" checked> 学生
+                            <input type="radio" name="identity-radio"value="stu" checked> 学生
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="identity" id="radio-tch"  value="option2"> 教师
+                            <input type="radio" name="identity-radio" value="tch"> 教师
                         </label>
-                            <label class="radio-inline">
-                            <input type="radio" name="identity" id="radio-mgr"  value="option2"> 管理员
+                        <label class="radio-inline">
+                            <input type="radio" name="identity-radio" value="mgr"> 管理员
                         </label>
                     </div>
                 </div>

@@ -4,6 +4,13 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
+
+    <!--声明service的注解@Service所在的包名位置-->
+    <!--注册组件扫描器-->
+    <context:component-scan base-package="per.liu.service"/>
+    <!--<context:component-scan base-package="per.liu.crm.workbench.service"/>
+    <context:component-scan base-package="per.liu.crm.web.filter"/>-->
+
     <!--spring配置文件:声明service，dao，工具类等对象-->
     <context:property-placeholder location="classpath:conf/jdbc.properties"/>
 
@@ -28,11 +35,6 @@
         <property name="basePackage" value="per.liu.dao"/>
     </bean>
 
-    <!--声明service的注解@Service所在的包名位置-->
-    <!--注册组件扫描器-->
-    <context:component-scan base-package="per.liu.setting.service"/>
-    <!--<context:component-scan base-package="per.liu.crm.workbench.service"/>
-    <context:component-scan base-package="per.liu.crm.web.filter"/>-->
 
     <!--注册监听器-->
 </beans>

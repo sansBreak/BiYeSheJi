@@ -1,4 +1,4 @@
-package per.liu.setting.domain;
+package per.liu.domain;
 
 /**
  * @Description
@@ -86,5 +86,20 @@ public class Student {
 
     public void setClassId(String classId) {
         this.classId = classId;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id='" + id + '\'' +
+                ", loginAct='" + loginAct + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", grade='" + grade + '\'' +
+                ", department='" + department + '\'' +
+                ", classe='" + classe + '\'' +
+                ", classId='" + classId + '\'' +
+                '}';
     }
 }
