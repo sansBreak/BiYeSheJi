@@ -3,18 +3,15 @@ package per.liu.domain;
 /**
  * @Description
  * @Author Alex
- * @Date 2021-03-31 15:55
+ * @Date 2021-04-01 17:17
  */
-public class Student {
-    private String id;              //编号 主键 自增长
-    private String loginAct;     //学号       同时也是登录账号
-    private String name;        //学生姓名
+public class Teacher {
+    private String id;      ////编号 主键 自增长
+    private String loginAct;        //工号   同时也是登录账号
+    private String name;        //老师姓名
     private String email;       //邮箱
     private String loginPwd;        //登录密码
-    private String grade;       //年级
-    private String department;      //所属学院
-    private String classe;      //班级英文class在java中是关键字，所以使用classe代替
-    private String classId;     //班级编号
+    private String department;  //所属学院
 
     public String getId() {
         return id;
@@ -56,14 +53,6 @@ public class Student {
         this.loginPwd = loginPwd;
     }
 
-    public String getGrade() {
-        return grade;
-    }
-
-    public void setGrade(String grade) {
-        this.grade = grade;
-    }
-
     public String getDepartment() {
         return department;
     }
@@ -72,34 +61,15 @@ public class Student {
         this.department = department;
     }
 
-    public String getClasse() {
-        return classe;
-    }
-
-    public void setClasse(String classe) {
-        this.classe = classe;
-    }
-
-    public String getClassId() {
-        return classId;
-    }
-
-    public void setClassId(String classId) {
-        this.classId = classId;
-    }
-
     @Override
     public String toString() {
-        return "Student{" +
+        return "Teacher{" +
                 "id='" + id + '\'' +
                 ", loginAct='" + loginAct + '\'' +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", loginPwd='" + loginPwd + '\'' +
-                ", grade='" + grade + '\'' +
                 ", department='" + department + '\'' +
-                ", classe='" + classe + '\'' +
-                ", classId='" + classId + '\'' +
                 '}';
     }
 }

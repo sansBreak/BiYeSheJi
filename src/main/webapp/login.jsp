@@ -32,14 +32,14 @@
     <script>
         $(function () {
             //如果当前登录页不是顶层窗口，将其设为顶层窗口
-            if(window.top != window){
-                window.top.location=window.location;
+            if (window.top != window) {
+                window.top.location = window.location;
             }
 
             //页面加载完毕后，将用户文本框中的内容清空，单选按钮复位
             $("#loginAct").val("");
             $("#loginPwd").val("");
-            $("input[name=identity-radio]:eq(0)").prop("checked",'checked');
+            $("input[name=identity-radio]:eq(0)").prop("checked", 'checked');
 
             //页面打开后，自动为用户的文本框获得焦点
             $("#loginAct").focus();
@@ -50,9 +50,9 @@
             })
 
             //绑定键盘事件，敲击回车键登录
-            $(window).keydown(function(event){
+            $(window).keydown(function (event) {
                 // event只是一个变量名，随意编写，是一个引用，指向了一个事件对象，所有的键盘事件对象都有一个keyCode属性，用来获取键值。				有的键盘事件对象都有一个keyCode属性，用来获取键值。
-                if(event.keyCode === 13){ // 回车键是13
+                if (event.keyCode === 13) { // 回车键是13
                     alert("敲击了回车键");
                     login();
                 }
@@ -62,40 +62,50 @@
         //自定义方法，写在$(function(){})的外面
         function login() {
             /*取用户登录身份*/
-            $xz=$("input[name=identity-radio]:checked");
-            var identity=$xz.val();
+            $xz = $("input[name=identity-radio]:checked");
+            var identity = $xz.val();
 
             //首先验证账号密码不能为空
             /*取得账号密码，使用$.trim(文本)去掉左右空格*/
             var loginAct = $.trim($("#loginAct").val());
             var loginPwd = $.trim($("#loginPwd").val());
 
-            if (loginAct=="" || loginPwd==""){
+            if (loginAct == "" || loginPwd == "") {
                 $("#msg").html("用户名或密码不能为空！！！")
                 return false;   //若账号密码为空，则需要停止执行后续方法
             }
 
             //去后台验证登录相关操作
             $.ajax({
-                url:"user/login.do",
-                data:{
-                    "identity":identity,
-                    "loginAct":loginAct,
-                    "loginPwd":loginPwd,
+                url: "user/login.do",
+                data: {
+                    "identity": identity,
+                    "loginAct": loginAct,
+                    "loginPwd": loginPwd,
                 },
-                type:"post",
-                dataType:"json",
-                success:function (data) {
+                type: "post",
+                dataType: "json",
+                success: function (data) {
                     /*
                     data{"success":true/false,"msg":"哪里出错"}
                     * */
                     //如果登录成功，跳转到欢迎页
-                    if (data.success){
-                        window.location.href = "workbench/student/index.html";
-                        alert("登录成功！");
+                    if (data.success) {
+
+                        if (identity == "stu") {
+                            alert("用户是学生！");
+                            window.location.href = "workbench/student/index.html";
+                        }else if (identity == "tch"){
+                            alert("用户是老师！");
+                            window.location.href = "workbench/teacher/index.html";
+                        }else if (identity == "mgr"){
+                            alert("用户是老师！");
+                            window.location.href = "workbench/teacher/index.html";
+                        }
+
 
                         //如果登录失败，则显示错误信息
-                    }else{
+                    } else {
                         $("#msg").html(data.msg);
                     }
                 }
@@ -129,7 +139,7 @@
         <div class="col-md-5 col-md-offset-1 col-sm-3"
              style="margin-top: 70px;padding-bottom: 30px;border:2px solid #8B8989;box-shadow:4px 4px 5px #999">
             <div class="page-header" style="padding-left: 80px">
-                <h1 style="font-size: 23px;color: #1191ef; font-family: '微软雅黑 '">用户登录</h1>
+                <h1 style="font-size: 28px;color: #1191ef; font-family: '微软雅黑 '">用户登录</h1>
             </div>
             <%--表单--%>
             <form action="#" class="form-horizontal" role="form">
@@ -137,7 +147,7 @@
                     <label class="control-label  form-inline col-md-3">用户身份</label>
                     <div class="col-md-8">
                         <label class="radio-inline">
-                            <input type="radio" name="identity-radio"value="stu" checked> 学生
+                            <input type="radio" name="identity-radio" value="stu" checked> 学生
                         </label>
                         <label class="radio-inline">
                             <input type="radio" name="identity-radio" value="tch"> 教师
@@ -160,8 +170,15 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-md-2 col-md-offset-4">
-                        <button type="button" class="btn btn-primary btn-lg btn-block" style="width: 100px; position: relative;top: 5px;" id="submitBtn">登录</button>
+                    <div class="col-md-8 col-md-offset-3">
+                        <span id="msg" style="color: red ;font-weight: bold">&nbsp</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-8 col-md-offset-2" style="border: 0px solid red">
+                        <button type="button" class="btn btn-primary btn-lg btn-block"
+                                style=" position: relative;top: 5px;" id="submitBtn">登录
+                        </button>
                     </div>
                 </div>
             </form>

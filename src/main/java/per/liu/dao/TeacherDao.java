@@ -1,6 +1,7 @@
 package per.liu.dao;
 
 import per.liu.domain.Student;
+import per.liu.domain.Teacher;
 
 import java.util.Map;
 
@@ -9,7 +10,7 @@ import java.util.Map;
  * @Author Alex
  * @Date 2021-04-01 15:48
  */
-public interface StudentDao {
+public interface TeacherDao {
 
-    public Student login(Map<String, String> map);
+    public Teacher login(Map<String, String> map);
 }

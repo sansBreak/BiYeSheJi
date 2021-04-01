@@ -5,11 +5,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import per.liu.domain.Manager;
 import per.liu.domain.Student;
+import per.liu.domain.Teacher;
+import per.liu.service.ManagerService;
 import per.liu.service.StudentService;
+import per.liu.service.TeacherService;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.time.temporal.TemporalAccessor;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,10 +30,10 @@ public class UserController {
 
     @Resource
     private StudentService studentService;
-    /*@Resource
+    @Resource
     private TeacherService teacherService;
     @Resource
-    private ManagerService managerService;*/
+    private ManagerService managerService;
 
     /*登录账号*/
     @RequestMapping("/login.do")
@@ -42,30 +47,41 @@ public class UserController {
         System.out.println("identity:" + identity + "\nloginAct:" + loginAct + "\nloginPwd:" + loginPwd);
 
         try {
-
             /*
-             * 登录用户是老师的情形下
+             * 登录用户是学生的情形下
              * */
+            if ("stu".equals(identity)){
+                System.out.println("用户是学生！");
 
-            /*
-             * 登录用户是管理员的情形下
-             * */
+                Student student = studentService.login(loginAct, loginPwd);
+                System.out.println("这里是controller层 我已收到数据，感觉良好！\n" + student);
 
+                // __________________________________________
+                //将取得的student放在session中备用
+                request.getSession().setAttribute("user", student);
 
-            /*
-            * 登录用户是学生的情形下
-            * */
-            Student student = studentService.login(loginAct, loginPwd);
-            System.out.println(
-                    "“这里是controller层 我已收到数据，感觉良好！\n" + student
-            );
-            //将取得的student放在session中备用
-            request.getSession().setAttribute("student", student);
+                //程序成功运行到此处，说明业务层没有为controller抛出任何异常，登录成功
+                //此时应该通过ajax发给前台这个消息  {"success":true}
+                map.put("success", true);
 
-            //程序成功运行到此处，说明业务层没有为controller抛出任何异常，登录成功
-            //此时应该通过ajax发给前台这个消息  {"success":true}
+            }else if ("tch".equals(identity)){
+                /*
+                 * 登录用户是老师的情形下
+                 * */
+                Teacher teacher = teacherService.login(loginAct, loginPwd);
 
-            map.put("success", true);
+                request.getSession().setAttribute("user", teacher);
+                map.put("success", true);
+
+            }else if ("mgr".equals(identity)){
+                /*
+                 * 登录用户是管理员的情形下
+                 * */
+                Manager manager = managerService.login(loginAct, loginPwd);
+
+                request.getSession().setAttribute("user", manager);
+                map.put("success", true);
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
