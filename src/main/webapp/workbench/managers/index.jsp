@@ -1,17 +1,23 @@
-﻿<!DOCTYPE HTML>
+﻿<%
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/";
+%>
+<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <base href="<%=basePath%>">
+
     <meta charset="utf-8">
     <meta name="renderer" content="webkit|ie-comp|ie-stand">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"
           content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
     <![endif]-->
-    <link rel="stylesheet" type="text/css" href="../static/h-ui/css/H-ui.min.css"/>
-    <link rel="stylesheet" type="text/css" href="../static/h-ui.admin/css/H-ui.admin.css"/>
-    <link rel="stylesheet" type="text/css" href="../lib/Hui-iconfont/1.0.8/iconfont.css"/>
-    <link rel="stylesheet" type="text/css" href="../static/h-ui.admin/skin/default/skin.css" id="skin"/>
-    <link rel="stylesheet" type="text/css" href="../static/h-ui.admin/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="workbench/static/h-ui/css/H-ui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="workbench/static/h-ui.admin/css/H-ui.admin.css"/>
+    <link rel="stylesheet" type="text/css" href="workbench/lib/Hui-iconfont/1.0.8/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="workbench/static/h-ui.admin/skin/default/skin.css" id="skin"/>
+    <link rel="stylesheet" type="text/css" href="workbench/static/h-ui.admin/css/style.css"/>
     <![endif]-->
 
     <title>教材管理系统后台——管理员</title>
@@ -52,7 +58,7 @@
                     <li class="dropDown dropDown_hover">
                         <a href="#" class="dropDown_A">admin <i class="Hui-iconfont">&#xe6d5;</i></a>
                         <ul class="dropDown-menu menu radius box-shadow">
-                            <li><a href="../../login.jsp">切换账户</a></li>
+                            <li><a href="login.jsp">切换账户</a></li>
                             <li><a href="#">退出</a></li>
                         </ul>
                     </li>
@@ -121,11 +127,11 @@
             <dt><i class="Hui-iconfont">&#xe616;</i> 个人资料<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a data-href="../base/personal-info.html" data-title="查看个人信息"
+                    <li><a data-href="workbench/base/personal-info.html" data-title="查看个人信息"
                            href="javascript:void(0)">查看个人信息</a></li>
                 </ul>
                 <ul>
-                    <li><a data-href="../base/change-password.html" data-title="修改密码" href="javascript:void(0)">修改密码</a>
+                    <li><a data-href="workbench/base/change-password.html" data-title="修改密码" href="javascript:void(0)">修改密码</a>
                     </li>
                 </ul>
             </dd>
@@ -152,7 +158,7 @@
     <div id="iframe_box" class="Hui-article">
         <div class="show_iframe">
             <div style="display:none" class="loading"></div>
-            <iframe scrolling="yes" frameborder="0" src="../welcome.html"></iframe>
+            <iframe scrolling="yes" frameborder="0" src="workbench/welcome.html"></iframe>
         </div>
     </div>
 </section>
@@ -164,13 +170,13 @@
     </ul>
 </div>
 <!--_footer 作为公共模版分离出去-->
-<script type="text/javascript" src="../lib/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript" src="../lib/layer/2.4/layer.js"></script>
-<script type="text/javascript" src="../static/h-ui/js/H-ui.min.js"></script>
-<script type="text/javascript" src="../static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="workbench/lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="workbench/lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="workbench/static/h-ui/js/H-ui.min.js"></script>
+<script type="text/javascript" src="workbench/static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
 
 <!--请在下方写此页面业务相关的脚本-->
-<script type="text/javascript" src="../lib/jquery.contextmenu/jquery.contextmenu.r2.js"></script>
+<script type="text/javascript" src="workbench/lib/jquery.contextmenu/jquery.contextmenu.r2.js"></script>
 <script type="text/javascript">
     $(function () {
         /*$("#min_title_list li").contextMenu('Huiadminmenu', {

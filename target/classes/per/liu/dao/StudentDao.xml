@@ -10,6 +10,7 @@
                 email,
                 loginPwd,
                 grade,
+                major,
                 department,
                 classId
         from tbl_student where loginAct=#{loginAct} and loginPwd=#{loginPwd}

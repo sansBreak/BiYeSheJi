@@ -41,9 +41,7 @@ public class UserController {
     public Map<String, Object> login(String identity, String loginAct, String loginPwd, HttpServletRequest request) {
         //用于存放返回值
         Map<String, Object> map = new HashMap<>();
-
         System.out.println("进入到验证登录操作");
-
         System.out.println("identity:" + identity + "\nloginAct:" + loginAct + "\nloginPwd:" + loginPwd);
 
         try {
@@ -59,6 +57,7 @@ public class UserController {
                 // __________________________________________
                 //将取得的student放在session中备用
                 request.getSession().setAttribute("user", student);
+                request.getSession().setAttribute("identity", identity);
 
                 //程序成功运行到此处，说明业务层没有为controller抛出任何异常，登录成功
                 //此时应该通过ajax发给前台这个消息  {"success":true}
@@ -71,6 +70,8 @@ public class UserController {
                 Teacher teacher = teacherService.login(loginAct, loginPwd);
 
                 request.getSession().setAttribute("user", teacher);
+                request.getSession().setAttribute("identity", identity);
+                System.out.println(identity + "已放进");
                 map.put("success", true);
 
             }else if ("mgr".equals(identity)){
@@ -80,6 +81,8 @@ public class UserController {
                 Manager manager = managerService.login(loginAct, loginPwd);
 
                 request.getSession().setAttribute("user", manager);
+                request.getSession().setAttribute("identity", identity);
+
                 map.put("success", true);
             }
 
@@ -93,5 +96,15 @@ public class UserController {
         }
 
         return map;
+    }
+
+    /*查询当前登陆用户信息*/
+    @RequestMapping("/personal-info.do")
+    @ResponseBody
+    public Object personalInfo(HttpServletRequest request){
+        //当前用户的信息，在登录时已经放在session中，直接取出即可，无需经过数据库
+        Object objectInfo =  request.getSession().getAttribute("user");
+
+        return objectInfo;
     }
 }

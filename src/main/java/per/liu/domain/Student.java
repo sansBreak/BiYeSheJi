@@ -12,6 +12,7 @@ public class Student {
     private String email;       //邮箱
     private String loginPwd;        //登录密码
     private String grade;       //年级
+    private String major;       //专业
     private String department;      //所属学院
     private String classe;      //班级英文class在java中是关键字，所以使用classe代替
     private String classId;     //班级编号
@@ -56,6 +57,14 @@ public class Student {
         this.loginPwd = loginPwd;
     }
 
+    public String getMajor() {
+        return major;
+    }
+
+    public void setMajor(String major) {
+        this.major = major;
+    }
+
     public String getGrade() {
         return grade;
     }
@@ -97,6 +106,7 @@ public class Student {
                 ", email='" + email + '\'' +
                 ", loginPwd='" + loginPwd + '\'' +
                 ", grade='" + grade + '\'' +
+                ", major='" + major + '\'' +
                 ", department='" + department + '\'' +
                 ", classe='" + classe + '\'' +
                 ", classId='" + classId + '\'' +

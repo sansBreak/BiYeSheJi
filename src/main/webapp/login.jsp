@@ -53,7 +53,6 @@
             $(window).keydown(function (event) {
                 // event只是一个变量名，随意编写，是一个引用，指向了一个事件对象，所有的键盘事件对象都有一个keyCode属性，用来获取键值。				有的键盘事件对象都有一个keyCode属性，用来获取键值。
                 if (event.keyCode === 13) { // 回车键是13
-                    alert("敲击了回车键");
                     login();
                 }
             });
@@ -93,16 +92,12 @@
                     if (data.success) {
 
                         if (identity == "stu") {
-                            alert("用户是学生！");
-                            window.location.href = "workbench/student/index.html";
+                            window.location.href = "workbench/student/index.jsp";
                         }else if (identity == "tch"){
-                            alert("用户是老师！");
-                            window.location.href = "workbench/teacher/index.html";
+                            window.location.href = "workbench/teacher/index.jsp";
                         }else if (identity == "mgr"){
-                            alert("用户是老师！");
-                            window.location.href = "workbench/teacher/index.html";
+                            window.location.href = "workbench/teacher/index.jsp";
                         }
-
 
                         //如果登录失败，则显示错误信息
                     } else {
