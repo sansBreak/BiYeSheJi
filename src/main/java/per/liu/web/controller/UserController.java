@@ -48,7 +48,7 @@ public class UserController {
             /*
              * 登录用户是学生的情形下
              * */
-            if ("stu".equals(identity)){
+            if ("stu".equals(identity)) {
                 System.out.println("用户是学生！");
 
                 Student student = studentService.login(loginAct, loginPwd);
@@ -63,7 +63,7 @@ public class UserController {
                 //此时应该通过ajax发给前台这个消息  {"success":true}
                 map.put("success", true);
 
-            }else if ("tch".equals(identity)){
+            } else if ("tch".equals(identity)) {
                 /*
                  * 登录用户是老师的情形下
                  * */
@@ -74,7 +74,7 @@ public class UserController {
                 System.out.println(identity + "已放进");
                 map.put("success", true);
 
-            }else if ("mgr".equals(identity)){
+            } else if ("mgr".equals(identity)) {
                 /*
                  * 登录用户是管理员的情形下
                  * */
@@ -101,10 +101,38 @@ public class UserController {
     /*查询当前登陆用户信息*/
     @RequestMapping("/personal-info.do")
     @ResponseBody
-    public Object personalInfo(HttpServletRequest request){
+    public Object personalInfo(HttpServletRequest request) {
         //当前用户的信息，在登录时已经放在session中，直接取出即可，无需经过数据库
-        Object objectInfo =  request.getSession().getAttribute("user");
+        Object objectInfo = request.getSession().getAttribute("user");
 
+        System.out.println("查询当前登陆用户信息的 controloler");
         return objectInfo;
+    }
+
+    /*更改用户密码*/
+    @RequestMapping("/change-password.do")
+    @ResponseBody
+    public Boolean changePwd(String loginPwd, HttpServletRequest request){
+        Boolean flag = false;
+        System.out.println("controller层   这里是更改用户密码");
+
+        String identity = (String) request.getSession().getAttribute("identity");
+        System.out.println(identity);
+
+            //学生
+        if ("stu".equals(identity)) {
+            Student student = (Student) request.getSession().getAttribute("user");
+            flag  = studentService.changePwd(loginPwd, student.getLoginAct());
+            //老师
+        }else if ("tch".equals(identity)) {
+            Teacher teacher = (Teacher) request.getSession().getAttribute("user");
+            flag  = teacherService.changePwd(loginPwd, teacher.getLoginAct());
+
+            //管理员
+        }/*else if ("mgr".equals(identity)) {
+            flag  = managerService.changePwd(pwd);
+        }*/
+
+        return flag;
     }
 }

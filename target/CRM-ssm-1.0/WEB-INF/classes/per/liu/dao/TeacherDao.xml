@@ -14,4 +14,13 @@
 
     </select>
 
+    <update id="changePwd">
+
+        update tbl_teacher set
+            loginPwd=#{loginPwd}
+        where loginAct=#{loginAct}
+
+
+    </update>
+
 </mapper>

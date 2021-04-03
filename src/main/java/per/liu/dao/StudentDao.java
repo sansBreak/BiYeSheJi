@@ -1,5 +1,6 @@
 package per.liu.dao;
 
+import org.apache.ibatis.annotations.Param;
 import per.liu.domain.Student;
 
 import java.util.Map;
@@ -11,5 +12,12 @@ import java.util.Map;
  */
 public interface StudentDao {
 
-    public Student login(Map<String, String> map);
+    //学生登录
+    Student login(Map<String, String> map);
+
+    //学生修改密码
+    int changePwd(@Param("loginPwd") String loginPwd, @Param("loginAct") String loginAct );
+
+
+
 }

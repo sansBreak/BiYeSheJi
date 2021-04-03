@@ -25,15 +25,29 @@ public class StudentServiceImpl implements StudentService {
         Map<String, String> map = new HashMap<>();
         map.put("loginAct", loginAct);
         map.put("loginPwd", loginPwd);
-
         Student student = studentDao.login(map);
-
         if (student == null) {
             throw new LoginException("账号密码错误");
         }
-
         System.out.println("service层——" + student);
-
         return student;
+    }
+
+    @Override
+    public Boolean changePwd(String loginPwd, String loginAct) {
+        boolean flag = false;
+
+        System.out.println("service层：：：" + loginAct + "   " + loginPwd);
+        int count = 0;
+        try {
+             count = studentDao.changePwd(loginPwd,loginAct);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (count != 1) {
+            flag = false;
+        }
+        return flag;
     }
 }

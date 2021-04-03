@@ -2,6 +2,7 @@
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/";
 %>
 <!DOCTYPE html>
+<%@page import="per.liu.domain.*"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -26,7 +27,10 @@
 
             //从session中取得当前用户的身份
             var identity="<%=session.getAttribute("identity")%>";
-alert(identity)
+
+            //从session中取得对象的属性
+            <%Student user1 = (Student)request.getSession().getAttribute("user");%>
+            var name = '<%=user1.getName() %>';
 
             //根据用户是否，对页面标题进行修改
             if (identity == "stu"){
@@ -36,7 +40,6 @@ alert(identity)
             }else if (identity == "mgr"){
                 $("#h2").html("管理员 个人信息");
             }
-
 
             //进入页面后，自动发起请求，取得用户信息
              $.ajax({
@@ -68,11 +71,7 @@ alert(identity)
                           html += '<tr class="text-c"> <th style="background-color:#f4fafe" width="30%">工号</th> <td>'+data.loginAct+'</td></tr>';
                           html += '<tr class="text-c"> <th style="background-color:#f4fafe" width="30%">姓名</th> <td>'+data.name+'</td></tr>';
                           html += '<tr class="text-c"> <th style="background-color:#f4fafe" width="30%">邮箱</th> <td>'+data.email+'</td></tr>';
-
                       }
-
-
-
                       $("#infoBody").html(html);
                   }
               });

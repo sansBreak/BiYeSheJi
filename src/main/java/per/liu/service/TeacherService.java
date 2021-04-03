@@ -13,4 +13,8 @@ import per.liu.exception.LoginException;
 public interface TeacherService {
     //老师模块登录功能
     Teacher login(String loginAct, String loginPwd) throws LoadException, LoginException;
+
+    //老师模块 修改密码
+    Boolean changePwd(String pwd, String loginAct);
+
 }

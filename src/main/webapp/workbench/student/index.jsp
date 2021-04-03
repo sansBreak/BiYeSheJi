@@ -115,7 +115,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
                     <li><a data-href="workbench/base/personal-info.jsp" data-title="查看个人信息" href="javascript:void(0)">查看个人信息</a></li>
                 </ul>
                 <ul>
-                    <li><a data-href="workbench/base/change-password.html" data-title="修改密码" href="javascript:void(0)">修改密码</a></li>
+                    <li><a data-href="workbench/base/change-password.jsp" data-title="修改密码" href="javascript:void(0)">修改密码</a></li>
                 </ul>
             </dd>
         </dl>

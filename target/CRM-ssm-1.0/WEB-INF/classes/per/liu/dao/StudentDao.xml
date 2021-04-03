@@ -17,4 +17,15 @@
 
     </select>
 
+    <update id="changePwd">
+
+        update tbl_student set
+            loginPwd=#{loginPwd}
+        where loginAct=#{loginAct}
+
+
+    </update>
+
+
+
 </mapper>

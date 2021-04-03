@@ -2,6 +2,7 @@
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/";
 %>
 <!DOCTYPE html>
+<%@page import="per.liu.domain.*"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -26,7 +27,10 @@
 
             //从session中取得当前用户的身份
             var identity="<%=session.getAttribute("identity")%>";
-            alert(identity);
+
+            //从session中取得对象的属性
+            <%Student user1 = (Student)request.getSession().getAttribute("user");%>
+            var name = '<%=user1.getName() %>';
 
             //根据用户是否，对页面标题进行修改
             if (identity == "stu"){

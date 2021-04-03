@@ -161,7 +161,7 @@
                 <div class="form-group">
                     <label class="control-label form-inline col-md-3" for="loginPwd">密码</label>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" id="loginPwd" placeholder="请输入密码">
+                        <input type="password" class="form-control" id="loginPwd" placeholder="请输入密码">
                     </div>
                 </div>
                 <div class="form-group">

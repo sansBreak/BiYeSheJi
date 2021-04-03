@@ -131,7 +131,7 @@
                            href="javascript:void(0)">查看个人信息</a></li>
                 </ul>
                 <ul>
-                    <li><a data-href="workbench/base/change-password.html" data-title="修改密码" href="javascript:void(0)">修改密码</a>
+                    <li><a data-href="workbench/base/change-password.jsp" data-title="修改密码" href="javascript:void(0)">修改密码</a>
                     </li>
                 </ul>
             </dd>

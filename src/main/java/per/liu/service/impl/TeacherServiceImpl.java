@@ -35,4 +35,25 @@ public class TeacherServiceImpl implements TeacherService {
 
         return teacher;
     }
+
+    @Override
+    public Boolean changePwd(String loginPwd, String loginAct) {
+
+        boolean flag = false;
+
+        System.out.println("service层：：：" + loginAct + "   " + loginPwd);
+        int count = 0;
+        try {
+            count = teacherDao.changePwd(loginPwd,loginAct);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (count != 1) {
+            flag = false;
+        }
+        return flag;
+    }
+
+
 }
