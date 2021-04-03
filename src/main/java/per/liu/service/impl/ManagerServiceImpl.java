@@ -38,4 +38,22 @@ public class ManagerServiceImpl implements ManagerService {
 
         return manager;
     }
+
+    @Override
+    public Boolean changePwd(String loginPwd, String loginAct) {
+        boolean flag = false;
+
+        System.out.println("service层：：：" + loginAct + "   " + loginPwd);
+        int count = 0;
+        try {
+            count = managerDao.changePwd(loginPwd,loginAct);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (count != 1) {
+            flag = false;
+        }
+        return flag;
+    }
 }

@@ -10,7 +10,12 @@
                 email,
                 loginPwd
         from tbl_manager where loginAct=#{loginAct} and loginPwd=#{loginPwd}
-
     </select>
+
+    <update id="changePwd">
+        update tbl_manager set
+            loginPwd=#{loginPwd}
+        where loginAct=#{loginAct}
+    </update>
 
 </mapper>

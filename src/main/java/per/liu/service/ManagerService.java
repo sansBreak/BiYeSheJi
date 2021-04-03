@@ -13,4 +13,7 @@ import per.liu.exception.LoginException;
 public interface ManagerService {
     //管理员模块登录功能
     Manager login(String loginAct, String loginPwd) throws LoadException, LoginException;
+
+    //管理员模块 修改密码
+    Boolean changePwd(String loginPwd, String loginAct);
 }

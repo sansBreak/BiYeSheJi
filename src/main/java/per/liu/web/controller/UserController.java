@@ -129,9 +129,10 @@ public class UserController {
             flag  = teacherService.changePwd(loginPwd, teacher.getLoginAct());
 
             //管理员
-        }/*else if ("mgr".equals(identity)) {
-            flag  = managerService.changePwd(pwd);
-        }*/
+        }else if ("mgr".equals(identity)) {
+            Manager manager = (Manager) request.getSession().getAttribute("user");
+            flag  = managerService.changePwd(loginPwd, manager.getLoginAct());
+        }
 
         return flag;
     }
