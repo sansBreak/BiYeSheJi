@@ -28,9 +28,6 @@
             //从session中取得当前用户的身份
             var identity="<%=session.getAttribute("identity")%>";
 
-            //从session中取得对象的属性
-            <%Student user1 = (Student)request.getSession().getAttribute("user");%>
-            var name = '<%=user1.getName() %>';
 
             //根据用户是否，对页面标题进行修改
             if (identity == "stu"){

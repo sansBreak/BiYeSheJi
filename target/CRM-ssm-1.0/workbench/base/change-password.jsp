@@ -28,18 +28,23 @@
         $(function () {
             //从session中取得当前用户的身份
             <%
-                Object user = request.getSession().getAttribute("user");
                 String identity = (String) request.getSession().getAttribute("identity");
                 String userName=null;
+
                 if ("stu".equals(identity)){
-                         userName = ((Student)user).getName();
+                 Student student = (Student) request.getSession().getAttribute("stu");
+                 userName = student.getName();
+
                 }else if ("tch".equals(identity)){
-                         userName = ((Teacher)user).getName();
+                    Teacher teacher = (Teacher) request.getSession().getAttribute("tch");
+                    userName = teacher.getName();
+
                 }else if ("mgr".equals(identity)){
-                         userName = ((Manager)user).getName();
+                   Manager manager = (Manager) request.getSession().getAttribute("mgr");
+                   userName = manager.getName();
                 }
             %>
-			//将通过session取得用户姓名放在页面中
+            //将通过session取得用户姓名放在页面中
             var name = '<%=userName%>';
             $("#userName-div").html(name);
 
@@ -49,41 +54,41 @@
                 changePwd();
             })
 
-			//自定义函数：用于更改密码
-			function changePwd() {
-				var pwd = $("#newpassword").val();
-				var pwd2 = $("#newpassword2").val();
+            //自定义函数：用于更改密码
+            function changePwd() {
+                var pwd = $("#newpassword").val();
+                var pwd2 = $("#newpassword2").val();
 
-				//对两次输入的密码进行判断
-                if (pwd !== pwd2){
+                //对两次输入的密码进行判断
+                if (pwd !== pwd2) {
                     $("#msg").html("两次输入的密码不一致!!!");
                     return false;
                 }
-                if (pwd==="" || pwd2===""){
+                if (pwd === "" || pwd2 === "") {
                     $("#msg").html("请输入完整密码！！！");
                     return false;   //若账号密码为空，则需要停止执行后续方法
                 }
-                if (pwd.length <6){
+                if (pwd.length < 6) {
                     $("#msg").html("密码最低为6位！！！");
                     return false;   //若账号密码为空，则需要停止执行后续方法
                 }
 
-				//像后台发起ajax请求
-				$.ajax({
-					url:"user/change-password.do",
-					data:{
-					    //两次输入的密码是否一致，在前端确即可
-						"loginPwd":pwd,
-					},
-					type:"post",
-					dataType:"json",
-					success:function (data) {
-					    //返回值为boolean类型，可以直接进行判断
-						if (data){
-							alert("更改成功");
-						}
-					}
-				});
+                //像后台发起ajax请求
+                $.ajax({
+                    url: "user/change-password.do",
+                    data: {
+                        //两次输入的密码是否一致，在前端确即可
+                        "loginPwd": pwd,
+                    },
+                    type: "post",
+                    dataType: "json",
+                    success: function (data) {
+                        //返回值为boolean类型，可以直接进行判断
+                        if (data) {
+                            alert("更改成功");
+                        }
+                    }
+                });
 
                 //处理完毕后，页面复位
                 /*this.location.reload();*/

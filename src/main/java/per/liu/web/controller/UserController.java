@@ -56,7 +56,7 @@ public class UserController {
 
                 // __________________________________________
                 //将取得的student放在session中备用
-                request.getSession().setAttribute("user", student);
+                request.getSession().setAttribute("stu", student);
                 request.getSession().setAttribute("identity", identity);
 
                 //程序成功运行到此处，说明业务层没有为controller抛出任何异常，登录成功
@@ -69,7 +69,7 @@ public class UserController {
                  * */
                 Teacher teacher = teacherService.login(loginAct, loginPwd);
 
-                request.getSession().setAttribute("user", teacher);
+                request.getSession().setAttribute("tch", teacher);
                 request.getSession().setAttribute("identity", identity);
                 System.out.println(identity + "已放进");
                 map.put("success", true);
@@ -80,7 +80,7 @@ public class UserController {
                  * */
                 Manager manager = managerService.login(loginAct, loginPwd);
 
-                request.getSession().setAttribute("user", manager);
+                request.getSession().setAttribute("mgr", manager);
                 request.getSession().setAttribute("identity", identity);
 
                 map.put("success", true);
@@ -103,8 +103,20 @@ public class UserController {
     @ResponseBody
     public Object personalInfo(HttpServletRequest request) {
         //当前用户的信息，在登录时已经放在session中，直接取出即可，无需经过数据库
-        Object objectInfo = request.getSession().getAttribute("user");
+        Object objectInfo = null;
+        String identity = (String) request.getSession().getAttribute("identity");
 
+        if ("stu".equals(identity)) {
+            objectInfo = (Student) request.getSession().getAttribute("stu");
+
+        } else if ("tch".equals(identity)) {
+            objectInfo = (Teacher) request.getSession().getAttribute("tch");
+
+        } else if ("mgr".equals(identity)) {
+            objectInfo = (Manager) request.getSession().getAttribute("mgr");
+        }
+        System.out.println(identity);
+        System.out.println(objectInfo);
         System.out.println("查询当前登陆用户信息的 controloler");
         return objectInfo;
     }
@@ -112,26 +124,26 @@ public class UserController {
     /*更改用户密码*/
     @RequestMapping("/change-password.do")
     @ResponseBody
-    public Boolean changePwd(String loginPwd, HttpServletRequest request){
+    public Boolean changePwd(String loginPwd, HttpServletRequest request) {
         Boolean flag = false;
         System.out.println("controller层   这里是更改用户密码");
 
         String identity = (String) request.getSession().getAttribute("identity");
         System.out.println(identity);
 
-            //学生
+        //学生
         if ("stu".equals(identity)) {
-            Student student = (Student) request.getSession().getAttribute("user");
-            flag  = studentService.changePwd(loginPwd, student.getLoginAct());
+            Student student = (Student) request.getSession().getAttribute("stu");
+            flag = studentService.changePwd(loginPwd, student.getLoginAct());
             //老师
-        }else if ("tch".equals(identity)) {
-            Teacher teacher = (Teacher) request.getSession().getAttribute("user");
-            flag  = teacherService.changePwd(loginPwd, teacher.getLoginAct());
+        } else if ("tch".equals(identity)) {
+            Teacher teacher = (Teacher) request.getSession().getAttribute("tch");
+            flag = teacherService.changePwd(loginPwd, teacher.getLoginAct());
 
             //管理员
-        }else if ("mgr".equals(identity)) {
-            Manager manager = (Manager) request.getSession().getAttribute("user");
-            flag  = managerService.changePwd(loginPwd, manager.getLoginAct());
+        } else if ("mgr".equals(identity)) {
+            Manager manager = (Manager) request.getSession().getAttribute("mgr");
+            flag = managerService.changePwd(loginPwd, manager.getLoginAct());
         }
 
         return flag;
