@@ -1,3 +1,4 @@
+<%@ page import="per.liu.domain.*" %>
 <%
 String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/";
 %>
@@ -30,28 +31,83 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
             queryAllBookInfo();
 
 
+            //为申请图书按钮绑定事件，执行打开 模态窗口操作
+            $("#applyBookBtn").click(function () {
+                //用户必须勾选一项图书才能打开模态窗口
+                if ($("input[name=xz]:checked").length == 0){
+                    alert("你还未勾选！")
+                    return false;
+                }else if ($("input[name=xz]:checked").length >1){
+                    alert("只能同时勾选一项图书！")
+                    return false;
+                }
 
+                /*取得session中的老师姓名,放入申请人框内*/
+                <%Teacher teacher = (Teacher)request.getSession().getAttribute("tch");%>
+                var tchName = '<%=teacher.getName() %>';
+                $("#apply-teacher").val(tchName);
+
+                //取得勾选的图书id
+                var $xz=$("input[name=xz]:checked");
+                var id=$xz.val();
+                //发起ajax  根据图书id，从数据库取得选择得出图书信息,并将数据填充进模态窗口
+                $.ajax({
+                    url:"workbench/book/query-BookInfo-ById.do",
+                    //规定要发送到服务器的数据，可以是：string， 数组，多数是 json
+                    data:{
+                        "id":id
+                    },
+                    type:"post",
+                    dataType:"json",
+                    success:function (data) {
+                        $("#ab-name").val(data.name);
+                        $("#ab-author").val(data.author);
+                        $("#ab-publisher").val(data.author);
+                        $("#ab-amount").val(data.amount);
+                    }
+
+                });
+
+                //发起ajax  要求返回当前用户所负责的班级和老师姓名,并将数据填充进模态窗口
+                $.ajax({
+                    url:"workbench/book/query-Class-ByTch.do",
+                    //规定要发送到服务器的数据，可以是：string， 数组，多数是 json
+                    type:"get",
+                    dataType:"json",
+                    success:function (data) {
+                        $.each(data, function (i,n) {
+                            var html = "";
+                            $.each(data, function (i, n) {
+                                html += "<option value='" + n.id + "'> " + n.name + "</option>";
+                            });
+                            $("#apply-class").html(html);
+                        })
+                    }
+                });
+                //打开 模态窗口
+                $("#applyBookModal").modal("show");
+            });
+
+            //为保存按钮绑定事件，执行添加操作
+
+
+    /*-----------------------------------------------------------*/
             //为全选的复选框绑定事件
             $("#qx").click(function () {
                 //当qx被点击时，name为xz的input标签全部被选中
                 $("input[name=xz]").prop("checked",this.checked);
-
             });
-
             //若已经勾选的对象的数量与全部对象的数量相等，则全选框自动变为勾选；不相等则自动取消勾选
             $("#infoBody").on("click", $("input[name=xz]"), function () {
                 $("#qx").prop("checked", $("input[name=xz]").length == $("input[name=xz]:checked").length);
-
             });
-
             //该函数用于查询仓库内所有图书信息
             function queryAllBookInfo() {
-                //发起ajax请求
+                //发起ajax请求，获取图书信息
                 $.ajax({
                     url:"workbench/book/query-AllBookInfo.do",
                     //规定要发送到服务器的数据，可以是：string， 数组，多数是 json
                     data:{
-
                     },
                     type:"post",
                     dataType:"json",
@@ -80,8 +136,6 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
                 });
             }
         });
-
-
     </script>
 </head>
 <body>
@@ -92,8 +146,8 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 <div class="page-container">
 
     <div class="btn-group" style="position: relative;bottom: 5px ;top: 18%;">
-        <button type="button" class="btn btn-primary" id="addBtn"><span class="glyphicon glyphicon-plus"></span>
-            申请教材
+        <button type="button" class="btn btn-primary" id="applyBookBtn"><span class="glyphicon glyphicon-plus"></span>
+            申请图书
         </button>
     </div>
 
@@ -120,6 +174,92 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 
             </tbody>
         </table>
+    </div>
+
+    <!-- 创建市场活动的模态窗口 -->
+    <div class="modal fade" id="applyBookModal" role="dialog">
+        <div class="modal-dialog" role="document" style="width: 85%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel1">申请图书</h4>
+                </div>
+
+                <div class="modal-body">
+                    <form id="applyBookForm" class="form-horizontal" role="form">
+
+                        <div class="form-group" style="width: 50%" >
+                            <label for="ab-name" class="col-sm-4 control-label">教材名称</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="ab-name" value="Java从入门到精通" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group" style="width: 50%">
+                            <label for="ab-author" class="col-sm-4 control-label">作者</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="ab-author" value="明日科技" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group" style="width: 50%">
+                            <label for="ab-publisher" class="col-sm-4 control-label">出版社</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="ab-publisher" value="清华大学出版社" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group" style="width: 50%">
+                            <label for="ab-amount" class="col-sm-4 control-label">库存数量</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="ab-amount" value="40" readonly>
+                            </div>
+                        </div>
+
+                        <hr style="border-top:1px dashed #987cb9;" width="100%" color="#987cb9" size=1>
+
+                        <div class="form-group" style="width: 60%">
+                            <label for="apply-class" class="col-sm-4 control-label">申请班级</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" id="apply-class">
+
+
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group" style="width: 60%">
+                            <label for="apply-amount" class="col-sm-4 control-label">申请数量</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="apply-amount" placeholder="请输入你的申请数量" >
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group" style="width: 60%">
+                            <label for="apply-teacher" class="col-sm-4 control-label">申请人</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" id="apply-teacher" value="宙斯" readonly>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="saveBtn" data-dismiss="modal">保存</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 </body>

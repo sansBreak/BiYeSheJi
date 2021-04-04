@@ -1,5 +1,6 @@
 package per.liu.service;
 
+import org.springframework.stereotype.Service;
 import per.liu.domain.Book;
 
 import java.util.List;
@@ -10,8 +11,12 @@ import java.util.List;
  * @Date 2021-04-04 13:39
  */
 
+
 public interface BookService {
 
     //查询全部图书
     List<Book> queryAllBookInfo();
+
+    //根据图书id查询图书
+    Book queryBookInfoById(String id);
 }

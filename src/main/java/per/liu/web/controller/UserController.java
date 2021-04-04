@@ -71,7 +71,7 @@ public class UserController {
 
                 request.getSession().setAttribute("tch", teacher);
                 request.getSession().setAttribute("identity", identity);
-                System.out.println(identity + "已放进");
+                System.out.println(identity + "已放进session");
                 map.put("success", true);
 
             } else if ("mgr".equals(identity)) {

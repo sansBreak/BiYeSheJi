@@ -21,10 +21,17 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<Book> queryAllBookInfo() {
-
         System.out.println("已经到了service层！！！！");
         List<Book> bookList =  bookDao.queryAllBookInfo();
 
         return bookList;
+    }
+
+    @Override
+    public Book queryBookInfoById(String id) {
+        System.out.println("已经到了service层的queryBookInfoById方法！！！！");
+        Book book = bookDao.queryBookInfoById(id);
+
+        return book;
     }
 }

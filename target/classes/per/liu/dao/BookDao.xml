@@ -18,9 +18,25 @@
             storage_time,
             amount
         from tbl_books;
+    </select>
+    <select id="queryBookInfoById" resultType="Book">
 
-
+        select
+            id,
+            bId,
+            name,
+            ISBN,
+            author,
+            price,
+            publisher,
+            pub_time,
+            storage_time,
+            amount
+        from tbl_books
+        where id=#{id}
 
     </select>
+
+
 
 </mapper>

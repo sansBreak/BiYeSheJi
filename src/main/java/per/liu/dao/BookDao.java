@@ -16,4 +16,7 @@ public interface BookDao {
 
     //查询全部图书信息
     List<Book> queryAllBookInfo();
+
+    //根据图书id查询图书
+    Book queryBookInfoById(String id);
 }
