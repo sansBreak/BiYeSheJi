@@ -22,6 +22,9 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
     <script src="js/jquery-3.4.1.js"></script>
     <!-- 包括所有已编译的插件 -->
     <script src="bootstrap/js/bootstrap.js"></script>
+    <!--引入toastr插件-->
+    <link rel="stylesheet" type="text/css" href="workbench/plugins/toastr/toastr.css" />
+    <script src="workbench/plugins/toastr/toastr.js"></script>
     <!--引入自定义的css文件-->
     <link rel="stylesheet" type="text/css" href="workbench/static/h-ui.admin/css/style.css"/>
 
@@ -88,10 +91,8 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
                 $("#applyBookModal").modal("show");
             });
 
-            //为保存按钮绑定事件，执行添加操作
+            //为保存按钮绑定事件，执行添加操作 点击后，将窗口内填的数据发给后端处理，并清除窗口内输入框内容
             $("#saveBtn").click(function () {
-                alert("你点击了保存按钮！");
-
 
                 //取得勾选的图书id
                 var $xz=$("input[name=xz]:checked");
@@ -111,9 +112,17 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
                     type:"get",
                     dataType:"json",
                     success:function (data) {
-
+                        toastr.success("申请已发送成功！");
+                        queryAllBookInfo();
                     }
-                })
+                });
+
+                //关闭前处理窗口内内容
+                $("#apply-amount").val("");
+
+                $("#applyBookModal").modal("hide");
+
+
             });
 
 
@@ -164,6 +173,8 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
             }
         });
     </script>
+
+
 </head>
 <body>
 <div >
@@ -283,7 +294,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary" id="saveBtn" data-dismiss="modal">保存</button>
+                    <button type="button" class="btn btn-primary" id="saveBtn" >保存</button>
                 </div>
             </div>
         </div>

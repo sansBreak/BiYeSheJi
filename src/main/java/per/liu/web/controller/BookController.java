@@ -113,6 +113,6 @@ public class BookController {
 
         System.out.println( (flag)?"申请成功":"申请失败" );
 
-        return null;
+        return flag;
     }
 }
