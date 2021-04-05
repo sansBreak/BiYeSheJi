@@ -37,6 +37,15 @@
 
     </select>
 
+    <update id="updataBookAmount">
+
+        update tbl_books set
+
+                amount=#{amount}
+
+            where id=#{id}
+
+    </update>
 
 
 </mapper>

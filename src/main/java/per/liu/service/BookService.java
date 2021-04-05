@@ -19,4 +19,7 @@ public interface BookService {
 
     //根据图书id查询图书
     Book queryBookInfoById(String id);
+
+    //教师为班级申请图书
+    Boolean addAppli(String teacher_id, String book_id, String appli_amount, String class_id, String kuchun_amount);
 }

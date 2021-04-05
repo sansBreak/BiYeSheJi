@@ -96,7 +96,7 @@
                         }else if (identity == "tch"){
                             window.location.href = "workbench/teacher/index.jsp";
                         }else if (identity == "mgr"){
-                            window.location.href = "workbench/teacher/index.jsp";
+                            window.location.href = "workbench/managers/index.jsp";
                         }
 
                         //如果登录失败，则显示错误信息

@@ -89,6 +89,33 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
             });
 
             //为保存按钮绑定事件，执行添加操作
+            $("#saveBtn").click(function () {
+                alert("你点击了保存按钮！");
+
+
+                //取得勾选的图书id
+                var $xz=$("input[name=xz]:checked");
+                var abId=$xz.val();
+
+                /*
+                * 在申请图书模态窗口内点击保存按钮，发起ajax请求，返回成功或失败消息
+                * */
+                $.ajax({
+                    url:"workbench/book/addAppli.do",
+                    data:{
+                        "book_id":abId,        //申请教材的id
+                        "appli_amount":$.trim($("#apply-amount").val()),      //  教材申请数量
+                        "class_id":$.trim($("#apply-class").val()),      //  申请班级
+                        "kuchun_amount":$.trim($("#ab-amount").val()),      //  库存数量
+                    },
+                    type:"get",
+                    dataType:"json",
+                    success:function (data) {
+
+                    }
+                })
+            });
+
 
 
     /*-----------------------------------------------------------*/
@@ -211,7 +238,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
                         <div class="form-group" style="width: 50%">
                             <label for="ab-amount" class="col-sm-4 control-label">库存数量</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="ab-amount" value="40" readonly>
+                                <input type="text" class="form-control" id="ab-amount"  readonly>
                             </div>
                         </div>
 

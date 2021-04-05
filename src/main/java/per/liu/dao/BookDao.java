@@ -2,10 +2,7 @@ package per.liu.dao;
 
 import org.apache.ibatis.annotations.Param;
 import per.liu.domain.Book;
-import per.liu.domain.Manager;
-
 import java.util.List;
-import java.util.Map;
 
 /**
  * @Description
@@ -19,4 +16,6 @@ public interface BookDao {
 
     //根据图书id查询图书
     Book queryBookInfoById(String id);
+
+    int updataBookAmount(@Param("id") String id,@Param("amount") String amount);
 }

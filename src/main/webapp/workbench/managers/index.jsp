@@ -102,15 +102,15 @@
             <dt><i class="Hui-iconfont">&#xe616;</i> 教材管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a data-href="book-manage/book-info.html" data-title="库存列表" href="javascript:void(0)">图书列表</a>
+                    <li><a data-href="workbench/managers/book-manage/book-info.html" data-title="库存列表" href="javascript:void(0)">图书列表</a>
                     </li>
                 </ul>
                 <ul>
-                    <li><a data-href="book-manage/book-register.html" data-title="教材入库" href="javascript:void(0)">图书入库</a>
+                    <li><a data-href="workbench/managers/book-manage/book-register.html" data-title="教材入库" href="javascript:void(0)">图书入库</a>
                     </li>
                 </ul>
                 <ul>
-                    <li><a data-href="book-manage/book-purchase-appl.html" data-title="教材购置申请" href="javascript:void(0)">教材购置申请</a></li>
+                    <li><a data-href="workbench/managers/book-manage/book-purchase-appl.html" data-title="教材购置申请" href="javascript:void(0)">教材购置申请</a></li>
                 </ul>
             </dd>
         </dl>
@@ -118,7 +118,7 @@
             <dt><i class="Hui-iconfont">&#xe616;</i> 订书订单管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a data-href="book_sub/sub-order.html" data-title="订单列表" href="javascript:void(0)">订单列表</a>
+                    <li><a data-href="workbench/managers/book_sub/sub-order.html" data-title="订单列表" href="javascript:void(0)">订单列表</a>
                     </li>
                 </ul>
             </dd>
@@ -127,7 +127,7 @@
             <dt><i class="Hui-iconfont">&#xe616;</i> 个人资料<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a data-href="workbench/base/personal-info.html" data-title="查看个人信息"
+                    <li><a data-href="workbench/base/personal-info.jsp" data-title="查看个人信息"
                            href="javascript:void(0)">查看个人信息</a></li>
                 </ul>
                 <ul>
