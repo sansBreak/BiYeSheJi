@@ -84,16 +84,19 @@ public class ApplicationController {
         /*
         1、查询所有班级的申请情况
         * */
-
         List<ApplicationVo> voList = applicationService.queryAllApplication();
-
-        System.out.println("---------------controller------------------");
-        for (ApplicationVo a : voList) {
-            System.out.println(a);
-        }
-
-        System.out.println("----------------------------------------");
-
         return voList;
     }
+
+    @RequestMapping("/agreeAppli.do")
+    @ResponseBody
+    public Boolean agreeAppli(String id,String grant_place, String grant_time){
+        /*管理员模块：管理员处理老师的申请 将application表中的未审核改为通过即可
+        * */
+
+        Boolean flag = applicationService.agreeAppli(id,grant_place, grant_time);
+
+        return flag;
+    }
+
 }

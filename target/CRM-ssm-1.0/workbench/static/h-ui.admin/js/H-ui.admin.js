@@ -9,6 +9,10 @@
 */
 var num=0,oUl=$("#min_title_list"),hide_nav=$("#Hui-tabNav");
 
+function unbund() {
+	alert("sadjaslk")
+}
+
 /*获取顶部选项卡总长度*/
 function tabNavallwidth(){
 	var taballwidth=0,

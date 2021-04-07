@@ -22,4 +22,7 @@ public interface ApplicationService {
 
     //管理员模块 查询老师所负责班级的申请情况
     List<ApplicationVo> queryAllApplication();
+
+    //管理员模块：管理员同意老师的申请
+    Boolean agreeAppli( String  id, String grant_place, String grant_time);
 }

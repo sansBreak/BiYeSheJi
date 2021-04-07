@@ -78,5 +78,18 @@
         ORDER BY field(a.status, 0, 1, -1)
     </select>
 
+    <update id="agreeAppli">
+
+         update tbl_application
+
+         set
+
+             grant_place=#{grant_place},
+             status=#{status},
+             grant_time=#{grant_time}
+
+        where id=#{id}
+
+    </update>
 
 </mapper>

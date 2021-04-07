@@ -102,4 +102,17 @@ public class ApplicationServiceImpl implements ApplicationService {
         System.out.println("-------------service层-----------------");
         return voList;    }
 
+    //管理员模块：管理员同意老师的申请
+    @Override
+    public Boolean agreeAppli(String  id, String grant_place, String grant_time) {
+        Boolean flag = true;
+
+        int result = applicationDao.agreeAppli(id, "1", grant_place, grant_time);
+
+        if (result != 1){
+            flag = false;
+        }
+        return flag;
+    }
+
 }

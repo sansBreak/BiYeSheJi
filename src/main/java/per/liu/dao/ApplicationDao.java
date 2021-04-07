@@ -26,4 +26,10 @@ public interface ApplicationDao {
                  @Param("class_id") String class_id,
                  @Param("status_0") String status_0);
 
+
+    //管理员模块：管理员同意老师的申请
+    int agreeAppli(@Param("id")String id,
+                   @Param("status")String status,
+                   @Param("grant_place")String grant_place,
+                   @Param("grant_time")String grant_time);
 }
