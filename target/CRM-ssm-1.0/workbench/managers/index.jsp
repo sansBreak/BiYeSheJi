@@ -118,7 +118,7 @@
             <dt><i class="Hui-iconfont">&#xe616;</i> 订书订单管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a data-href="workbench/managers/book_sub/sub-order.html" data-title="订单列表" href="javascript:void(0)">订单列表</a>
+                    <li><a data-href="workbench/managers/book_sub/show-appli.jsp" data-title="订单列表" href="javascript:void(0)">订单列表</a>
                     </li>
                 </ul>
             </dd>

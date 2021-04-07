@@ -45,6 +45,24 @@
     background-color: #9bd8f7;
 }
 
+.custom {
+    width: 75px !important;
+}
+
+/*审核通过*/
+.bc-success{
+    background-color: #74b816;
+}
+
+/*未审核*/
+.bc-warning{
+    background-color: #ffd43b;
+}
+/*审核未通过*/
+.bc-fail{
+    background-color: #e03131;
+}
+
 /*使得表格内容垂直居中*/
 .table tbody tr td{
     vertical-align: middle;

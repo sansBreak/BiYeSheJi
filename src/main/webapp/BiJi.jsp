@@ -67,33 +67,24 @@
         }
 
     %>
+
+
+    //解除关联
+    $.each(data, function (i, n) {
+        html += '<tr>';
+        html += '<td>' + n.name + '</td>';
+        html += '<td>' + n.startDate + '</td>';
+        html += '<td>' + n.endDate + '</td>';
+        html += '<td>' + n.owner + '</td>';            //unbund(\''+n.id+'\')中，我希望取得的id是关联关系表中的id，用于解除管理,在dao层中，可将该条activity的id改为tbl_clue_activity_relation的id
+        html += '<td><a href="javascript:void(0);" onclick="unbund(\'' + n.id + '\')" style="text-decoration: none;"><span class="glyphicon glyphicon-remove"></span>解除关联</a></td>';
+        html += '</tr>';
+    })
+    $("#activityBody").html(html)
+
 </script>
 
 <body>
 <article class="page-container box-shadow-grey" style=" margin:50px auto; width:35%;  ">
-    <form action="/" method="post" class="form form-horizontal" id="form-change-password">
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>账户：</label>
-            <div class="formControls col-xs-8 col-sm-9"> 张三 </div>
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>新密码：</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <input type="password" class="input-text" autocomplete="off" placeholder="请输入新密码" name="newpassword" id="newpassword">
-            </div>
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>确认密码：</label>
-            <div class="formControls col-xs-8 col-sm-9">
-                <input type="password" class="input-text" autocomplete="off" placeholder="请再次输入新密码" name="newpassword2" id="new-password2">
-            </div>
-        </div>
-        <div class="row cl">
-            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
-                <input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;保存&nbsp;&nbsp;">
-            </div>
-        </div>
-    </form>
 </article>
 </body>
 

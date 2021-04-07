@@ -14,6 +14,7 @@
     <typeAliases>
         <!--name:实体类所在的包名-->
         <package name="per.liu.domain"/>
+        <package name="per.liu.vo"/>
     </typeAliases>
 
     <!-- sql mapper(sql映射文件)的位置-->

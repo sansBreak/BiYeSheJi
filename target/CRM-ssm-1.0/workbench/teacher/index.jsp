@@ -114,7 +114,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
                     <li><a data-href="book_management/applyBooks.html" data-title="申请教材" href="javascript:void(0)">申请教材（增）</a></li>
                 </ul>-->
                 <ul>
-                    <li><a data-href="workbench/teacher/book_sub/sub-order.html" data-title="订单列表" href="javascript:void(0)">订单列表</a></li>
+                    <li><a data-href="workbench/teacher/book_sub/show-appli.jsp" data-title="查看申请" href="javascript:void(0)">订单列表</a></li>
                 </ul>
                 <ul>
                     <li><a data-href="workbench/teacher/book_sub/unsub.html" data-title="退订教材" href="javascript:void(0)">退订教材</a></li>
