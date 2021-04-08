@@ -11,6 +11,8 @@
     <link rel="stylesheet" type="text/css" href="workbench/static/h-ui.admin/css/H-ui.admin.css"/>
     <link rel="stylesheet" type="text/css" href="workbench/lib/Hui-iconfont/1.0.8/iconfont.css"/>
     <link rel="stylesheet" type="text/css" href="workbench/static/h-ui.admin/skin/default/skin.css" id="skin"/>
+    <%--引入时间控件--%>
+    <link href="workbench/plugins/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css" type="text/css" rel="stylesheet"/>
     <![endif]-->
 
     <meta charset="UTF-8">
@@ -26,18 +28,29 @@
     <link rel="stylesheet" type="text/css" href="workbench/plugins/toastr/toastr.css"/>
     <script src="workbench/plugins/toastr/toastr.js"></script>
     <link rel="stylesheet" type="text/css" href="workbench/static/h-ui.admin/css/style.css"/>
+    <%--引入时间插件--%>
+    <script type="text/javascript" src="workbench/plugins/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.js"></script>
+    <script type="text/javascript" src="workbench/plugins/bootstrap-datetimepicker-master/locale/bootstrap-datetimepicker.zh-CN.js"></script>
 
 
-    <script>
+    <script type="text/javascript">
         $(function () {
+
+
             //页面加载后，自动加载所有申请
             query_AllApplication();
 
             //审批模态窗口中，取得当前订单的id，点击同意申请按钮，发起ajax请求
             $("#agreeBtn").click(function () {
+
                 var id = $.trim($("#noneInput").val());
                 var grant_place = $.trim($("#grant_place").val());
                 var grant_time = $.trim($("#grant_time").val());
+
+                if (grant_place == "" || grant_time == "" ){
+                    toastr.warning("请输入完整信息！");
+                    return false;
+                }
 
                 $.ajax({
                     url: "workbench/application/agreeAppli.do",
@@ -54,6 +67,8 @@
                             toastr.success("操作成功！");
                             //更新列表
                             query_AllApplication();
+                        }else {
+                            toastr.error("操作失败！")
                         }
                     }
                 });
@@ -105,6 +120,16 @@
                 });
 
             }
+
+            //加入时间控件  使用的是class选择器
+            $(".time").datetimepicker({
+                minView: "month",
+                language: 'zh-CN',
+                format: 'yyyy-mm-dd',
+                autoclose: true,
+                todayBtn: true,
+                pickerPosition: "bottom-left"
+            });
         })
     </script>
 
@@ -112,6 +137,9 @@
 <body>
 
 <script>
+
+
+
     //未审批的列，点击审批后即可进行审批
     function shenPi(id) {
         //id通过函数传入
@@ -168,15 +196,15 @@
             </div>
 
             <div class="form-group" style="width: 60%;margin-top: 30px">
-                <label for="grant_place" class="col-sm-4 control-label">领书地点</label>
+                <label for="grant_place" class="col-sm-4 control-label">领书地点 <span style="color: red">*</span></label>
                 <div class="col-sm-8">
                     <input type="text" class="form-control" id="grant_place" placeholder="请输入领书地点">
                 </div>
             </div>
             <div class="form-group" style="width: 60%">
-                <label for="grant_time" class="col-sm-4 control-label">领书时间</label>
+                <label for="grant_time" class="col-sm-4 control-label">领书时间 <span style="color: red">*</span></label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" id="grant_time" placeholder="请输入领书时间">
+                    <input type="text" class="form-control time" id="grant_time" placeholder="请输入领书时间">
                 </div>
             </div>
 

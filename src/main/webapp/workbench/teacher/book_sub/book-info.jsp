@@ -104,6 +104,9 @@
                 if (appli_amount > kuchun_amount) {
                     toastr.warning("申请数量超过库存数量了！");
                     return false;
+                }else if (appli_amount <= 0) {
+                    toastr.warning("请输入正确的申请数量！");
+                    return false;
                 }
 
 
@@ -271,7 +274,7 @@
                         <hr style="border-top:1px dashed #987cb9;" width="100%" color="#987cb9" size=1>
 
                         <div class="form-group" style="width: 60%">
-                            <label for="apply-class" class="col-sm-4 control-label">申请班级</label>
+                            <label for="apply-class" class="col-sm-4 control-label">申请班级 <span style="color: red">*</span></label>
                             <div class="col-sm-8">
                                 <select class="form-control" id="apply-class">
 
@@ -281,7 +284,7 @@
                         </div>
                         <br>
                         <div class="form-group" style="width: 60%">
-                            <label for="apply-amount" class="col-sm-4 control-label">申请数量</label>
+                            <label for="apply-amount" class="col-sm-4 control-label">申请数量 <span style="color: red">*</span></label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="apply-amount" placeholder="请输入你的申请数量">
                             </div>

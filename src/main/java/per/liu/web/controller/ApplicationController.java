@@ -95,7 +95,7 @@ public class ApplicationController {
         * */
 
         Boolean flag = applicationService.agreeAppli(id,grant_place, grant_time);
-
+        System.out.println("-------------"+grant_time);
         return flag;
     }
 
