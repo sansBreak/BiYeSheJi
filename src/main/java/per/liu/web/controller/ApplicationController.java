@@ -3,6 +3,7 @@ package per.liu.web.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import per.liu.domain.Book;
 import per.liu.domain.Teacher;
 import per.liu.service.ApplicationService;
 import per.liu.service.BookService;
@@ -96,6 +97,21 @@ public class ApplicationController {
 
         Boolean flag = applicationService.agreeAppli(id,grant_place, grant_time);
         System.out.println("-------------"+grant_time);
+        return flag;
+    }
+
+
+    @RequestMapping("/rejectionAppli.do")
+    @ResponseBody
+    public Boolean rejectionAppli(String id){
+
+        /*
+        * 驳回时，不仅要将tbl_application表中的status改为-1，还有将申请时取得书本数量放回仓库内
+        * */
+
+        //1、修改status
+        Boolean flag = applicationService.rejectionAppli(id);
+
         return flag;
     }
 

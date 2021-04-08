@@ -25,4 +25,8 @@ public interface ApplicationService {
 
     //管理员模块：管理员同意老师的申请
     Boolean agreeAppli( String  id, String grant_place, String grant_time);
+
+    //管理员模块：管理员驳回老师的申请
+    Boolean rejectionAppli(String id);
+
 }

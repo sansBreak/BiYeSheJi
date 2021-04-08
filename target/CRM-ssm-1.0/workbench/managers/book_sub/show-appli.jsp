@@ -78,6 +78,34 @@
 
             });
 
+
+            //驳回申请
+            $("#rejectionBtn").click(function () {
+                var id = $.trim($("#noneInput").val());
+
+                $.ajax({
+                    url: "workbench/application/rejectionAppli.do",
+                    //规定要发送到服务器的数据，可以是：string， 数组，多数是 json
+                    data: {
+                        "id": id,
+                    },
+                    type: "post",
+                    dataType: "json",
+                    success: function (data) {
+                        if (data) {
+                            toastr.success("操作成功！");
+                            //更新列表
+                            query_AllApplication();
+                        }else {
+                            toastr.error("操作失败！")
+                        }
+                    }
+                });
+                $("#shenPiModal").modal("hide");
+
+
+            });
+
             function query_AllApplication() {
                 //发起ajax请求，获取所有
                 $.ajax({
@@ -140,7 +168,7 @@
 
 
 
-    //未审批的列，点击审批后即可进行审批
+    //未审批的列，点击审批后即可进行审批 id是申请订单的id
     function shenPi(id) {
         //id通过函数传入
         $("#shenPiModal").modal("show");
@@ -182,7 +210,6 @@
     </div>
 </div>
 
-//审核模态窗口
 <div class="modal fade" id="shenPiModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">

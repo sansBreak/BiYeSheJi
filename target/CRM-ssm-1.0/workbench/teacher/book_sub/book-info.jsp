@@ -101,17 +101,19 @@
                 //检查申请数量是否超过库存数量
                 var appli_amount = $.trim($("#apply-amount").val());
                 var kuchun_amount = $.trim($("#ab-amount").val());
-                if (appli_amount > kuchun_amount) {
+
+                /*
+                    javascript中定义的var类型是弱类型，默认是String类型，在比较两个数字大小的时候默认比较的是两个字符串
+                    在js中不能直接用">"、"<"来直接判断大小
+                * */
+                if (parseInt(appli_amount) > parseInt(kuchun_amount)) {
                     toastr.warning("申请数量超过库存数量了！");
                     return false;
-                }else if (appli_amount <= 0) {
+                }else if (parseInt(appli_amount) <= eval(0)) {
                     toastr.warning("请输入正确的申请数量！");
                     return false;
                 }
 
-
-                alert(appli_amount);
-                alert(kuchun_amount);
                 /*
                 * 在申请图书模态窗口内点击保存按钮，发起ajax请求，返回成功或失败消息
                 * */
