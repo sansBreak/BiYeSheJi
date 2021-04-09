@@ -108,9 +108,14 @@ public class ApplicationServiceImpl implements ApplicationService {
 
         int result = applicationDao.agreeAppli(id, "1", grant_place, grant_time);
 
+
+
         if (result != 1) {
             flag = false;
         }
+        System.out.println(flag+"5555555555555555");
+
+
         return flag;
     }
 
@@ -160,6 +165,17 @@ public class ApplicationServiceImpl implements ApplicationService {
             flag = false;
         }
 
+        return flag;
+    }
+
+    @Override
+    public Boolean deleteApplication(String id) {
+        Boolean flag = true;
+
+        int result = applicationDao.deleteApplication(id);
+        if (result != 1) {
+            flag = false;
+        }
         return flag;
     }
 

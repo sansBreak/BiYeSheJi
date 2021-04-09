@@ -29,4 +29,6 @@ public interface ApplicationService {
     //管理员模块：管理员驳回老师的申请
     Boolean rejectionAppli(String id);
 
+    //管理员模块：删除已审批的申请
+    Boolean deleteApplication(String id);
 }

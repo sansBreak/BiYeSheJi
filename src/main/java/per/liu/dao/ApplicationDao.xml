@@ -52,7 +52,6 @@
         ORDER BY field(a.status, 0, 1, -1)
     </select>
 
-
     <select id="queryAllApplication" resultType="ApplicationVo">
         SELECT
 
@@ -115,4 +114,13 @@
         where id=#{id}
     </select>
 
+    <delete id="deleteApplication">
+
+        delete
+
+        from tbl_application
+        where id=#{id}
+
+
+    </delete>
 </mapper>

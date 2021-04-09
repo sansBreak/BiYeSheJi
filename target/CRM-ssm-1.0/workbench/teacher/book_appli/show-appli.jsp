@@ -24,8 +24,6 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
     <script src="bootstrap/js/bootstrap.js"></script>
     <link rel="stylesheet" type="text/css" href="workbench/static/h-ui.admin/css/style.css"/>
 
-
-
     <script>
         $(function () {
 
@@ -52,13 +50,13 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
                         html+="<td>"+n.appli_amount+"</td>";    //申请数量
 
                         if ("未审批" == n.status){
-                            html+="<td><button type='button' class='btn btn-info btn-sm custom'>"+n.status+"</button></td>";//状态
+                            html += "<td STYLE='color: #5bc0de'>" + n.status + "</td>";//状态
 
                         }else if ("审批未通过" == n.status){
-                            html+="<td><button type='button' class='btn btn-danger btn-sm custom'>"+n.status+"</button></td>";//状态
+                            html += "<td STYLE='color: #d9534f'>" + n.status + "</td>";//状态
 
                         }else if ("审批通过" == n.status){
-                            html+="<td><button type='button' class='btn btn-success btn-sm custom'>"+n.status+"</button></td>";//状态
+                            html += "<td STYLE='color: #5cb85c'>" + n.status + "</td>";//状态
                         }
                         html+="</tr>";
 

@@ -39,4 +39,6 @@ public interface ApplicationDao {
 
     //2、先根据订单id查出图书的id与数量
     Application queryBookInfoById(@Param("id")String id);
+
+    int deleteApplication(@Param("id")String id);
 }

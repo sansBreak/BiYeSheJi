@@ -81,8 +81,6 @@
 
                 document.getElementById("editBookForm").reset();
                 $("#editModal").modal("hide");
-
-
             });
 
 
