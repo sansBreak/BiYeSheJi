@@ -32,10 +32,8 @@
     <script type="text/javascript" src="workbench/plugins/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.js"></script>
     <script type="text/javascript" src="workbench/plugins/bootstrap-datetimepicker-master/locale/bootstrap-datetimepicker.zh-CN.js"></script>
 
-
     <script type="text/javascript">
         $(function () {
-
 
             //页面加载后，自动加载所有申请
             query_AllApplication();
@@ -77,7 +75,6 @@
 
 
             });
-
 
             //驳回申请
             $("#rejectionBtn").click(function () {
@@ -134,16 +131,15 @@
 
                             } else if ("审批未通过" == n.status) {
                                 html += "<td STYLE='color: #d9534f'>" + n.status + "</td>";//状态
-                                html += "<td><button type='button' class='btn btn-sm btn-link custom' href='javascript:void(0);' STYLE='background-color: #d9534f; color: #fffff0'>" + n.status + "</button></td>";//状态
+                                html += "<td><a ONCLICK='deleteAppli(\"" + n.id + "\")'  href='javascript:void(0);' ><span class='glyphicon glyphicon-remove'></span>删除申请</a></td>";//状态
 
                             } else if ("审批通过" == n.status) {
                                 html += "<td STYLE='color: #5cb85c'>" + n.status + "</td>";//状态
-                                html += "<td><button type='button' class='btn btn-sm btn-link custom' href='javascript:void(0);' STYLE='background-color: #5cb85c; color: #fffff0'>" + n.status + "</button></td>";//状态
+                                html += "<td><a ONCLICK='deleteAppli(\"" + n.id + "\")'  href='javascript:void(0);' ><span class='glyphicon glyphicon-remove'></span>删除申请</a></td>";//状态
                             }
                             html += "</tr>";
                         });
                         $("#shpwAppli-body").html(html);
-
                     }
                 });
 
@@ -165,8 +161,6 @@
 <body>
 
 <script>
-
-
 
     //未审批的列，点击审批后即可进行审批 id是申请订单的id
     function shenPi(id) {
@@ -215,13 +209,8 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3 class="modal-title" id="myModalLabel" style="font-weight: bolder">是否要同意该申请！</h3>
+                <h3 class="modal-title" id="myModalLabel" style="font-weight: bolder">编辑图书信息</h3>
             </div>
-            <%--隐藏区域，用于隐藏数据--%>
-            <div style="display: block">
-                <input type="hidden" id="noneInput" value="1010">
-            </div>
-
             <div class="form-group" style="width: 60%;margin-top: 30px">
                 <label for="grant_place" class="col-sm-4 control-label">领书地点 <span style="color: red">*</span></label>
                 <div class="col-sm-8">
@@ -231,6 +220,8 @@
             <div class="form-group" style="width: 60%">
                 <label for="grant_time" class="col-sm-4 control-label">领书时间 <span style="color: red">*</span></label>
                 <div class="col-sm-8">
+                    <i></i>
+                    <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
                     <input type="text" class="form-control time" id="grant_time" placeholder="请输入领书时间">
                 </div>
             </div>
@@ -240,8 +231,8 @@
                 <button type="button" class="btn btn-danger" id="rejectionBtn">驳回</button>
                 <button type="button" class="btn btn-primary" id="agreeBtn">同意</button>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
+        </div>
+    </div>
 </div>
 </body>
 </html>

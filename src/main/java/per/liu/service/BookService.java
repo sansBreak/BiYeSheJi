@@ -21,5 +21,6 @@ public interface BookService {
     //根据图书id查询图书
     Book queryBookInfoById(String id);
 
-
+    //根据图书id，更新图书信息
+    Boolean updateBookById(Book book);
 }

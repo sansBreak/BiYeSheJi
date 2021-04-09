@@ -70,7 +70,6 @@ public class ApplicationServiceImpl implements ApplicationService {
         //多表联查
         List<ApplicationVo> voList = applicationDao.queryAllApplicationByTch(tch_id);
 
-        System.out.println("-------------service层-----------------");
         for (ApplicationVo a : voList) {
 
             if ("0".equals(a.getStatus())) {
@@ -81,7 +80,6 @@ public class ApplicationServiceImpl implements ApplicationService {
                 a.setStatus("审批未通过");
             }
         }
-        System.out.println("-------------service层-----------------");
         return voList;
     }
 
@@ -90,7 +88,6 @@ public class ApplicationServiceImpl implements ApplicationService {
         //多表联查
         List<ApplicationVo> voList = applicationDao.queryAllApplication();
 
-        System.out.println("-------------service层----------------");
         for (ApplicationVo a : voList) {
 
             if ("0".equals(a.getStatus())) {
@@ -101,7 +98,6 @@ public class ApplicationServiceImpl implements ApplicationService {
                 a.setStatus("审批未通过");
             }
         }
-        System.out.println("-------------service层-----------------");
         return voList;
     }
 
@@ -159,9 +155,7 @@ public class ApplicationServiceImpl implements ApplicationService {
         String amount = String.valueOf(j + i);
 
         int result2 =bookDao.updataBookAmount(application.getBook_id(), amount);
-        System.out.println("==================");
         System.out.println(result2);
-        System.out.println("==================");
         if (result2 != 1) {
             flag = false;
         }

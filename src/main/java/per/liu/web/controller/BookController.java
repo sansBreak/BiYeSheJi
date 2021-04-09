@@ -36,11 +36,6 @@ public class BookController {
         System.out.println("已经到了controller层！！！！");
         List<Book> bookList = bookService.queryAllBookInfo();
 
-        /*System.out.println("------------------------------");
-        for (Book book:bookList ) {
-            System.out.println(book);
-        }
-        System.out.println("------------------------------");*/
         return bookList;
     }
 
@@ -49,14 +44,8 @@ public class BookController {
     @ResponseBody
     public Book queryAllBookInfoById(String id) {
 
-        System.out.println("queryAllBookInfoById的controller层！！！！");
         Book book = bookService.queryBookInfoById(id);
 
-        /*System.out.println("------------------------------");
-        for (Book book:bookList ) {
-            System.out.println(book);
-        }
-        System.out.println("------------------------------");*/
 
         System.out.println(book);
         return book;
@@ -75,7 +64,17 @@ public class BookController {
         return classeList;
     }
 
+    //根据图书id，更新图书信息
+    @RequestMapping("/updateBookById.do")
+    @ResponseBody
+    public Boolean updataBookById(Book book) {
+        System.out.println("============controller===========");
+        System.out.println(book);
+        System.out.println("============controller===========");
 
+        Boolean flag = bookService.updateBookById(book);
 
+        return flag;
+    }
 
 }

@@ -102,7 +102,7 @@
             <dt><i class="Hui-iconfont">&#xe616;</i> 教材管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a data-href="workbench/managers/book-manage/book-info.html" data-title="库存列表" href="javascript:void(0)">图书列表</a>
+                    <li><a data-href="workbench/managers/book-manage/book-info.jsp" data-title="库存列表" href="javascript:void(0)">图书列表</a>
                     </li>
                 </ul>
                 <ul>

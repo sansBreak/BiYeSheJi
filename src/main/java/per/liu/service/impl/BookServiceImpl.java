@@ -37,5 +37,20 @@ public class BookServiceImpl implements BookService {
         return book;
     }
 
+    //根据图书id，更新图书信息
+    @Override
+    public Boolean updateBookById(Book book) {
+        Boolean flag = true;
+
+        int result = bookDao.updateBookById(book);
+
+        if (result != 1) {
+            flag = false;
+        }
+
+
+        return flag;
+    }
+
 
 }

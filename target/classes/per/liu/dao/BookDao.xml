@@ -47,5 +47,22 @@
 
     </update>
 
+    <update id="updateBookById">
+            update tbl_books set
+
+                bId=#{bId},
+                name=#{name},
+                ISBN=#{ISBN},
+                author=#{author},
+                price=#{price},
+                publisher=#{publisher},
+                pub_time=#{pub_time},
+                storage_time=#{storage_time},
+                amount=#{amount}
+
+        where id = #{id}
+
+
+    </update>
 
 </mapper>

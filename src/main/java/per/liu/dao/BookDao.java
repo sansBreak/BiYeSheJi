@@ -18,4 +18,7 @@ public interface BookDao {
     Book queryBookInfoById(String id);
 
     int updataBookAmount(@Param("id") String id,@Param("amount") String amount);
+
+    //根据图书id，更新图书信息
+    int updateBookById(Book book);
 }
