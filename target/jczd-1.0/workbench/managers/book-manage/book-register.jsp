@@ -47,9 +47,15 @@
                 var pub_time = $.trim($("#pub_time").val());
                 var amount = $.trim($("#amount").val());
 
+                if(name == "" || ISBN == "" || author == "" || price == "" || publisher == "" ||
+                    pub_time == "" || amount == ""){
+
+                    toastr.warning("请输入完整信息");
+                    return false;
+                }
+
                 $.ajax({
                     url:"workbench/book/bookAdd.do",
-                    //规定要发送到服务器的数据，可以是：string， 数组，多数是 json
                     data:{
                         "name":name,
                         "ISBN":ISBN,

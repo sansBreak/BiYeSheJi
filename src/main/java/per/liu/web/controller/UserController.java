@@ -16,6 +16,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.time.temporal.TemporalAccessor;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -148,4 +149,17 @@ public class UserController {
 
         return flag;
     }
+
+    //根据老师信息查询所负责学生信息
+    @RequestMapping("/query_AllStudent.do")
+    @ResponseBody
+    public List<Student> query_AllStudent(HttpServletRequest request){
+
+        Teacher teacher = (Teacher) request.getSession().getAttribute("tch");
+        List<Student> list = teacherService.query_AllStudent(teacher);
+
+
+        return list;
+    }
+
 }

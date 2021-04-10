@@ -5,6 +5,8 @@ import per.liu.domain.Student;
 import per.liu.domain.Teacher;
 import per.liu.exception.LoginException;
 
+import java.util.List;
+
 /**
  * @Description
  * @Author Alex
@@ -16,5 +18,8 @@ public interface TeacherService {
 
     //老师模块 修改密码
     Boolean changePwd(String pwd, String loginAct);
+
+    //根据老师信息查询所负责学生信息
+    List<Student> query_AllStudent(Teacher teacher);
 
 }

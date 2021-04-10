@@ -21,4 +21,35 @@
         where loginAct=#{loginAct}
     </update>
 
+    <!--根据老师信息查询所负责学生信息,传入的参数是个List集合-->
+    
+    <select id="query_AllStudentByTchId" resultType="Student">
+
+        select
+
+        s.id,
+        s.loginAct,
+        s.name,
+        s.email,
+        s.grade,
+        s.major,
+        s.department,
+        s.classId,
+        c.name AS classe
+
+        from tbl_student s
+        JOIN tbl_class c ON s.classId=c.id
+
+        <if test="list !=null and list.size > 0 ">
+            where classId in
+            <foreach collection="list" open="(" close=")"
+                     item="classobject" separator=",">
+                #{classobject.id}
+            </foreach>
+        </if>
+
+
+
+    </select>
+
 </mapper>

@@ -14,4 +14,6 @@ import java.util.List;
 public interface ClassDao {
     //根据教师id，查询所负责班级
     List<Classe> queryClassByTch(String id);
+
+
 }

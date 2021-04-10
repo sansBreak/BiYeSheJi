@@ -91,7 +91,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
             <dt><i class="Hui-iconfont">&#xe616;</i> 学生信息<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a data-href="workbench/teacher/students-info.html" data-title="查看学生信息" href="javascript:void(0)">查看学生信息</a></li>
+                    <li><a data-href="workbench/teacher/students-info.jsp" data-title="查看学生信息" href="javascript:void(0)">查看学生信息</a></li>
                 </ul>
             </dd>
         </dl>
