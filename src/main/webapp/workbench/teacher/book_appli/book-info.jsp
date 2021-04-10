@@ -33,7 +33,6 @@
             //页面加载完成后，自动运行查询函数
             queryAllBookInfo();
 
-
             //为申请图书按钮绑定事件，执行打开 模态窗口操作
             $("#applyBookBtn").click(function () {
                 //用户必须勾选一项图书才能打开模态窗口

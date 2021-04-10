@@ -5,6 +5,8 @@ import per.liu.dao.ApplicationDao;
 import per.liu.dao.BookDao;
 import per.liu.domain.Book;
 import per.liu.service.BookService;
+import per.liu.utils.DateTimeUtil;
+import per.liu.utils.RandomID;
 import per.liu.vo.ApplicationVo;
 
 import javax.annotation.Resource;
@@ -48,6 +50,28 @@ public class BookServiceImpl implements BookService {
             flag = false;
         }
 
+
+        return flag;
+    }
+
+    //管理员：图书入库
+    @Override
+    public Boolean bookAdd(Book book) {
+        Boolean flag = true;
+
+        //1、取得一个bId，放入参数中
+        String bId = RandomID.createOrderId();
+        bId = "BK" + bId;
+        book.setbId(bId);
+
+        //2、取得今天的日期，放入参数中
+        String time = DateTimeUtil.getSysTimeMin();
+        book.setStorage_time(time);
+        int result = bookDao.bookAdd(book);
+
+        if (result != 1) {
+            flag = false;
+        }
 
         return flag;
     }

@@ -21,4 +21,7 @@ public interface BookDao {
 
     //根据图书id，更新图书信息
     int updateBookById(Book book);
+
+    //管理员：图书入库
+    int bookAdd(Book book);
 }

@@ -106,7 +106,7 @@
                     </li>
                 </ul>
                 <ul>
-                    <li><a data-href="workbench/managers/book-manage/book-register.html" data-title="教材入库" href="javascript:void(0)">图书入库</a>
+                    <li><a data-href="workbench/managers/book-manage/book-register.jsp" data-title="教材入库" href="javascript:void(0)">图书入库</a>
                     </li>
                 </ul>
                 <ul>

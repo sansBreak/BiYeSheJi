@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import per.liu.domain.*;
 import per.liu.service.BookService;
 import per.liu.service.ClassService;
+import per.liu.utils.RandomID;
 import per.liu.vo.ApplicationVo;
 
 import javax.annotation.Resource;
@@ -77,4 +78,16 @@ public class BookController {
         return flag;
     }
 
+
+    @RequestMapping("/bookAdd.do")
+    @ResponseBody
+    public Boolean bookRegister(Book book){
+
+
+
+        Boolean flag = bookService.bookAdd(book);
+        System.out.println("---------------\n" + flag);
+
+        return flag;
+    }
 }

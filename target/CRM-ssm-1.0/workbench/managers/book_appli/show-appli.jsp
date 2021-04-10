@@ -111,6 +111,49 @@
                 todayBtn: true,
                 pickerPosition: "bottom-left"
             });
+
+            function query_AllApplication() {
+                //发起ajax请求，获取所有
+                $.ajax({
+                    url: "workbench/application/query-AllApplication.do",
+                    //规定要发送到服务器的数据，可以是：string， 数组，多数是 json
+                    data: {},
+                    type: "post",
+                    dataType: "json",
+                    //返回结果是个list集合
+                    success: function (data) {
+                        var html = "";
+                        $.each(data, function (i, n) {
+
+                            html += "<tr class='text-c'>";
+                            html += "<td>" + n.id + "</td>";      //订单编号
+                            html += "<td>" + n.book_name + "</td>";     //教材名称
+                            html += "<td>" + n.book_price + "</td>";    //教材单价
+                            html += "<td>" + n.book_publisher + "</td>";    //出版社
+                            html += "<td>" + n.tch_name + "</td>";          //申请老师
+                            html += "<td>" + n.class_name + "</td>";          //申请班级
+                            html += "<td>" + n.appli_amount + "</td>";    //申请数量
+
+                            if ("未审批" == n.status) {
+                                html += "<td STYLE='color: #5bc0de'>" + n.status + "</td>";//状态
+                                html += "<td><a ONCLICK='shenPi(\"" + n.id + "\")'  href='javascript:void(0);' ><span class='glyphicon glyphicon-pencil'></span>审批</a></td>";//状态
+
+                            } else if ("审批未通过" == n.status) {
+                                html += "<td STYLE='color: #d9534f'>" + n.status + "</td>";//状态
+                                html += "<td><a ONCLICK='deleteAppli(\"" + n.id + "\")'  href='javascript:void(0);' ><span class='glyphicon glyphicon-remove'></span>删除申请</a></td>";//状态
+
+                            } else if ("审批通过" == n.status) {
+                                html += "<td STYLE='color: #5cb85c'>" + n.status + "</td>";//状态
+                                html += "<td><a ONCLICK='deleteAppli(\"" + n.id + "\")'  href='javascript:void(0);' ><span class='glyphicon glyphicon-remove'></span>删除申请</a></td>";//状态
+                            }
+                            html += "</tr>";
+                        });
+                        $("#shpwAppli-body").html(html);
+                    }
+                });
+
+            }
+
         })
     </script>
 </head>

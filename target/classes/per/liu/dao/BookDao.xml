@@ -65,4 +65,32 @@
 
     </update>
 
+    <insert id="bookAdd">
+        INSERT into tbl_books(
+
+            bId,
+            name,
+            ISBN,
+            author,
+            price,
+            publisher,
+            pub_time,
+            storage_time,
+            amount
+
+        ) VALUES(
+
+            #{bId},
+            #{name},
+            #{ISBN},
+            #{author},
+            #{price},
+            #{publisher},
+            #{pub_time},
+            #{storage_time},
+            #{amount}
+        )
+
+
+    </insert>
 </mapper>
