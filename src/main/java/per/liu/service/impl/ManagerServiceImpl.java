@@ -34,7 +34,7 @@ public class ManagerServiceImpl implements ManagerService {
             throw new LoginException("账号密码错误");
         }
 
-        System.out.println("service层——" + manager);
+        System.out.println("service层--——" + manager);
 
         return manager;
     }

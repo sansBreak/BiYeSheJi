@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="per.liu.dao.ApplicationDao">
+    <insert id="addAppli">
+
+            insert into tbl_application(
+
+                tch_id,
+                book_id,
+                appli_amount,
+                class_id,
+                status
+
+            )  values (
+
+                #{tch_id},
+                #{book_id},
+                #{appli_amount},
+                #{class_id},
+                #{status_0}
+            )
+
+    </insert>
+
+    <select id="queryAllApplicationByTch" resultType="ApplicationVo">
+        SELECT
+
+            a.id,
+            a.tch_id,
+            a.book_id,
+            a.appli_amount,
+            a.class_id,
+            a.status,
+            a.grant_place,
+            a.grant_time,
+            t.name AS tch_name,
+            b.name AS book_name,
+            b.price AS book_price,
+            b.publisher AS book_publisher,
+            c.name AS class_name
+
+        FROM tbl_application a
+        JOIN tbl_teacher t ON a.tch_id=t.id
+        JOIN tbl_books b ON a.book_id=b.id
+        JOIN tbl_class c ON a.class_id=c.id
+
+
+        WHERE  tch_id = #{tch_id}
+
+        ORDER BY field(a.status, 0, 1, -1)
+    </select>
+
+    <select id="queryAllApplication" resultType="ApplicationVo">
+        SELECT
+
+            a.id,
+            a.tch_id,
+            a.book_id,
+            a.appli_amount,
+            a.class_id,
+            a.status,
+            a.grant_place,
+            a.grant_time,
+            t.name AS tch_name,
+            b.name AS book_name,
+            b.price AS book_price,
+            b.publisher AS book_publisher,
+            c.name AS class_name
+
+        FROM tbl_application a
+        JOIN tbl_teacher t ON a.tch_id=t.id
+        JOIN tbl_books b ON a.book_id=b.id
+        JOIN tbl_class c ON a.class_id=c.id
+                    /*field(a.status, 0, 1, -1) 可以按照自定義順序排序*/
+        ORDER BY field(a.status, 0, 1, -1)
+    </select>
+
+    <update id="agreeAppli">
+
+         update tbl_application
+
+         set
+
+             grant_place=#{grant_place},
+             status=#{status},
+             grant_time=#{grant_time}
+
+        where id=#{id}
+
+    </update>
+
+    <update id="rejectionAppli">
+
+         update tbl_application
+
+         set
+
+             status=#{status}
+
+        where id=#{id}
+
+    </update>
+
+    <select id="queryBookInfoById" resultType="Application">
+
+        select
+            id,
+            book_id,
+            appli_amount
+
+        from tbl_application
+        where id=#{id}
+    </select>
+
+    <delete id="deleteApplication">
+
+        delete
+
+        from tbl_application
+        where id=#{id}
+
+
+    </delete>
+</mapper>
