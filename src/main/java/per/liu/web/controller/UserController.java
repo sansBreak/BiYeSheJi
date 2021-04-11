@@ -217,4 +217,12 @@ public class UserController {
 
         return student;
     }
+
+
+    @RequestMapping("/deleteStuById.do")
+    @ResponseBody
+    public Boolean deleteStuById(String id){
+
+        return studentService.deleteStuById(id);
+    }
 }

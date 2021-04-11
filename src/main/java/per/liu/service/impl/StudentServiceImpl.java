@@ -102,20 +102,38 @@ public class StudentServiceImpl implements StudentService {
             flag = false;
         }
 
-        System.out.println("====================================");
 
         System.out.println(flag);
-        System.out.println("====================================");
 
         return flag;
     }
 
     //管理员：根据id查询学生信息
-
     @Override
     public Student queryStuById(String id) {
 
 
         return  studentDao.queryStuById(id);
+    }
+
+    //管理员：根据id删除学生信息
+    @Override
+    public Boolean deleteStuById(String id) {
+        boolean flag = true;
+
+
+        int result = 0;
+        try {
+            result = studentDao.deleteStuById(id);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        if (result != 1) {
+            flag = false;
+        }
+
+
+        return flag;
     }
 }

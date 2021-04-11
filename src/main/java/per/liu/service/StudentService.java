@@ -32,4 +32,7 @@ public interface StudentService {
 
     //管理员：根据id查询学生信息
     Student queryStuById(String id);
+
+    //管理员：根据id删除学生信息
+    Boolean deleteStuById(String id);
 }

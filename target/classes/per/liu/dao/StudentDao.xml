@@ -108,4 +108,17 @@
 
 
     </select>
+
+    <delete id="deleteStuById">
+
+        delete
+
+        from tbl_student
+
+        where id=#{id}
+
+
+
+
+    </delete>
 </mapper>

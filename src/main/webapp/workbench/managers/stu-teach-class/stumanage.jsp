@@ -147,7 +147,6 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 
             //加载所有学生信息
             function query_AllStudent() {
-
                 $.ajax({
                     url:"user/query_AllStudent.do",
                     //规定要发送到服务器的数据，可以是：string， 数组，多数是 json
@@ -170,7 +169,8 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
                             html+="<td>"+n.department+"</td>";
                             html+="<td>"+n.className+"</td>";
                             html+="<td>"+n.teacherName+"</td>";
-                            html += "<td><a ONCLICK='edit(\"" + n.id + "\")'  href='javascript:void(0);' ><span class='glyphicon glyphicon-pencil'></span>编辑</a></td>";//状态
+                            html += "<td><a ONCLICK='edit(\"" + n.id + "\")'  href='javascript:void(0);' ><span class='glyphicon glyphicon-pencil'></span>编辑</a> &nbsp;&nbsp;";//状态
+                            html += "<a ONCLICK='deleteStu(\"" + n.id + "\")'  href='javascript:void(0);' ><span class='glyphicon glyphicon-pencil'></span>删除</a></td>";//状态
 
                             html+="</tr>";
 
@@ -196,7 +196,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 
 <script>
     //编辑学生信息的窗口
-    function edit(id) {
+    function edit(id){
         $("#editModal").modal("show");
         //放入学生id
         $("#s_id").val(id);
@@ -245,6 +245,73 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 
     }
 
+    //删除学生
+    function deleteStu(id){
+        /*删除前，先弹出警告框，进行二次确认*/
+        $("#deleteModal").modal("show");
+        //点击确认键后
+        $("#deleteHaulBtn").click(function () {
+            $.ajax({
+                url:"user/deleteStuById.do",
+                //规定要发送到服务器的数据，可以是：string， 数组，多数是 json
+                data:{
+                    "id":id,
+                },
+                type:"get",
+                dataType:"json",
+                success:function (data) {
+                    if (data){
+                        toastr.success("删除成功！");
+                        query_AllStudent();
+                    }else {
+                        toastr.success("删除失败！");
+                        query_AllStudent();
+                    }
+                    $("#deleteModal").modal("hide");
+
+                }
+            });
+
+        });
+    }
+
+    //加载所有学生信息
+    function query_AllStudent() {
+        $.ajax({
+            url:"user/query_AllStudent.do",
+            //规定要发送到服务器的数据，可以是：string， 数组，多数是 json
+            data:{
+            },
+            type:"post",
+            dataType:"json",
+            success:function (data) {
+
+                var html="";
+                $.each(data, function (i, n) {
+
+                    html+="<tr class='text-c'>";
+                    html+="<td>"+n.id+"</td>";
+                    html+="<td>"+n.loginAct+"</td>";
+                    html+="<td>"+n.name+"</td>";
+                    html+="<td>"+n.email+"</td>";
+                    html+="<td>"+n.grade+"</td>";
+                    html+="<td>"+n.major+"</td>";
+                    html+="<td>"+n.department+"</td>";
+                    html+="<td>"+n.className+"</td>";
+                    html+="<td>"+n.teacherName+"</td>";
+                    html += "<td><a ONCLICK='edit(\"" + n.id + "\")'  href='javascript:void(0);' ><span class='glyphicon glyphicon-pencil'></span>编辑</a>&nbsp;&nbsp;";//状态
+                    html += "<a ONCLICK='deleteStu(\"" + n.id + "\")'  href='javascript:void(0);' ><span class='glyphicon glyphicon-pencil'></span>删除</a></td>";//状态
+
+                    html+="</tr>";
+
+                });
+                $("#showStu-body").html(html);
+
+            }
+
+        });
+
+    }
 </script>
 
 
@@ -277,7 +344,6 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
                 <th>操作</th>
             </tr>
             </thead>
-
             <tbody id="showStu-body">
 
             </tbody>
@@ -286,7 +352,6 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 </div>
 
 <!-- 添加学生信息 -->
-
 <div class="modal fade" id="addStuModal" role="dialog">
     <div class="modal-dialog" role="document" style="width: 85%;">
         <div class="modal-content">
@@ -428,5 +493,31 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
         </div>
     </div>
 </div>
+
+<!--信息删除确认 模态窗口-->
+<div class="modal fade" id="deleteModal">
+    <div class="modal-dialog">
+        <div class="modal-content message_align">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h3 class="modal-title">提示</h3>
+            </div>
+            <div class="modal-body">
+                <!-- 隐藏需要删除的id -->
+                <input type="hidden" id="deleteHaulId" />
+                <p style="font-size: 15px">该学生信息删除后不可恢复，请确认是否要删除？</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="deleteHaulBtn">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 </body>
 </html>
