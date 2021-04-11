@@ -26,4 +26,10 @@ public interface StudentService {
 
     //管理员模块：添加学生
     Boolean addStudent(Student student);
+
+    //管理员：修改学生信息
+    Boolean editStu(Student student);
+
+    //管理员：根据id查询学生信息
+    Student queryStuById(String id);
 }

@@ -76,4 +76,36 @@
         )
 
     </insert>
+
+    <update id="editStu">
+
+         update tbl_student set
+
+            loginAct=#{loginAct},
+            name=#{name},
+            email=#{email},
+            grade=#{grade},
+            major=#{major},
+            department=#{department},
+            classId=#{classId}
+
+        where id=#{id}
+
+    </update>
+
+    <select id="queryStuById" resultType="Student">
+
+        select
+
+            loginAct,
+            name,
+            email,
+            grade,
+            major,
+            department
+
+        from tbl_student where id=#{id}
+
+
+    </select>
 </mapper>

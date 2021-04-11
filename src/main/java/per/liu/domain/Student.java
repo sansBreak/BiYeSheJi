@@ -110,7 +110,6 @@ public class Student {
                 ", grade='" + grade + '\'' +
                 ", major='" + major + '\'' +
                 ", department='" + department + '\'' +
-                ", classe='" + classe + '\'' +
                 ", classId='" + classId + '\'' +
                 '}';
     }

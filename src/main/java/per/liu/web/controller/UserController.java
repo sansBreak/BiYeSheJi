@@ -198,4 +198,23 @@ public class UserController {
 
         return flag;
     }
+
+    @RequestMapping("/editStu.do")
+    @ResponseBody
+    public Boolean editStu(Student student){
+
+        System.out.println(student);
+        return studentService.editStu(student);
+    }
+
+    @RequestMapping("/queryStuById.do")
+    @ResponseBody
+    public Student queryStuById(String id){
+
+        Student student = studentService.queryStuById(id);
+
+        System.out.println(student);
+
+        return student;
+    }
 }

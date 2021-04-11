@@ -33,6 +33,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
         $(function () {
             query_AllStudent();
 
+            //打开添加学生窗口
             $("#addStu").click(function () {
                 //发起ajax  取得所有班级名,并填充数据
                 $.ajax({
@@ -51,14 +52,11 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
                     }
                 });
 
-
                 //打开 模态窗口
                 $("#addStuModal").modal("show");
 
-
-
             });
-
+            //保存学生信息
             $("#saveBtn").click(function () {
 
                 var loginAct = $.trim($("#loginAct").val());
@@ -97,6 +95,55 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 
             });
 
+            //修改学生信息
+            $("#saveEditBtn").click(function () {
+                var s_id = $.trim($("#s_id").val());
+                var s_loginAct = $.trim($("#s_loginAct").val());
+                var s_name = $.trim($("#s_name").val());
+                var s_email = $.trim($("#s_email").val());
+                var s_grade = $.trim($("#s_grade").val());
+                var s_classe = $.trim($("#s_classe").val());
+                var s_major = $.trim($("#s_major").val());
+                var s_department = $.trim($("#s_department").val());
+
+                if (s_id == "" || s_loginAct == "" || s_name == "" || s_email == "" ||
+                    s_grade == "" || s_classe == "" || s_major == "" || s_department == "" ){
+                    toastr.warning("请输入完整信息！");
+                    return false;
+                }
+
+                $.ajax({
+                    url: "user/editStu.do",
+                    data: {
+                        "id":s_id,
+                        "loginAct":s_loginAct,
+                        "name":s_name,
+                        "email":s_email,
+                        "grade":s_grade,
+                        "classId":s_classe,
+                        "major":s_major,
+                        "department":s_department
+                    },
+                    type: "post",
+                    dataType: "json",
+                    success: function (data) {
+                        //使用toastr插件弹出成功弹窗
+                        if (data) {
+                            toastr.success("修改成功成功！");
+                            //之后刷新图书列表，更新内容
+                            query_AllStudent();
+                        } else {
+                            toastr.error("修改失败！")
+                        }
+                    }
+                });
+
+
+                //关闭前处理窗口内内容
+
+                document.getElementById("editBookForm").reset();
+                $("#editModal").modal("hide");
+            })
 
             //加载所有学生信息
             function query_AllStudent() {
@@ -123,6 +170,8 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
                             html+="<td>"+n.department+"</td>";
                             html+="<td>"+n.className+"</td>";
                             html+="<td>"+n.teacherName+"</td>";
+                            html += "<td><a ONCLICK='edit(\"" + n.id + "\")'  href='javascript:void(0);' ><span class='glyphicon glyphicon-pencil'></span>编辑</a></td>";//状态
+
                             html+="</tr>";
 
                         });
@@ -133,6 +182,9 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
                 });
 
             }
+
+
+
         })
 
 
@@ -141,6 +193,62 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 
 </head>
 <body>
+
+<script>
+    //编辑学生信息的窗口
+    function edit(id) {
+        $("#editModal").modal("show");
+        //放入学生id
+        $("#s_id").val(id);
+
+        //发起ajax  取得所有班级名,并填充数据
+        $.ajax({
+            url: "user/query-Class.do",
+            //规定要发送到服务器的数据，可以是：string， 数组，多数是 json
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                $.each(data, function (i, n) {
+                    var html = "";
+                    $.each(data, function (i, n) {
+                        html += "<option value='" + n.id + "'> " + n.name + "</option>";
+                    });
+                    $("#s_classe").html(html);
+                })
+            }
+        });
+        //根据id查询学生信息，并充填到编辑窗口内
+        $.ajax({
+            url: "user/queryStuById.do",
+            //规定要发送到服务器的数据，可以是：string， 数组，多数是 json
+            data: {
+                "id": id,
+            },
+            type: "post",
+            dataType: "json",
+            success: function (data) {
+                $("#s_loginAct").val(data.loginAct);
+                $("#s_loginAct").val(data.loginAct);
+                $("#s_name").val(data.name);
+                $("#s_email").val(data.email);
+                $("#s_grade").val(data.grade);
+                $("#s_classe").val(data.classe);
+                $("#s_major").val(data.major);
+                $("#s_department").val(data.department);
+
+            }
+        });
+
+
+
+
+
+    }
+
+</script>
+
+
+
 <div >
     <h2 style="text-align: center;">学生 信息</h2>
 </div>
@@ -166,28 +274,11 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
                 <th>院系</th>
                 <th>班级</th>
                 <th>负责老师</th>
+                <th>操作</th>
             </tr>
             </thead>
 
             <tbody id="showStu-body">
-            <tr class="text-c">
-                <td>21706031022</td>
-                <td>桐生战兔</td>
-                <td>19级</td>
-                <td>物理学院</td>
-                <td>理论物理</td>
-                <td>19理论物理二班</td>
-                <td>build@gmail.com</td>
-                <td>
-                    <button type="button" class="btn btn-link btn-sm" aria-label="Left Align">
-                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                    </button>
-                    <button type="button" class="btn btn-link btn-sm" aria-label="Left Align">
-                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                    </button>
-                </td>
-            </tr>
-
 
             </tbody>
         </table>
@@ -258,6 +349,81 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                 <button type="button" class="btn btn-primary" id="saveBtn">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%--编辑学生信息--%>
+<div class="modal fade" id="editModal" role="dialog">
+    <div class="modal-dialog" role="document" style="width: 85%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel12">编辑学生信息</h4>
+            </div>
+
+            <div class="modal-body">
+                <form id="editBookForm" class="form-horizontal" role="form">
+                    <div class="form-group" style="width: 50%">
+                        <label for="s_id" class="col-sm-4 control-label">Id</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="s_id" value="Java从入门到精通" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group" style="width: 50%">
+                        <label for="loginAct" class="col-sm-4 control-label">学生编号</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="s_loginAct">
+                        </div>
+                    </div>
+                    <div class="form-group" style="width: 50%">
+                        <label for="s_name" class="col-sm-4 control-label">姓名</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control time" id="s_name">
+                        </div>
+                    </div>
+                    <div class="form-group" style="width: 50%">
+                        <label for="s_email" class="col-sm-4 control-label">邮箱</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control time" id="s_email">
+                        </div>
+                    </div>
+                    <div class="form-group" style="width: 50%">
+                        <label for="s_grade" class="col-sm-4 control-label">年级</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="s_grade">
+                        </div>
+                    </div>
+                    <div class="form-group" style="width: 50%">
+                        <label for="classe" class="col-sm-4 control-label">班级</label>
+                        <div class="col-sm-8">
+                            <select class="form-control" id="s_classe">
+
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" style="width: 50%">
+                        <label for="s_major" class="col-sm-4 control-label">专业</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="s_major">
+                        </div>
+                    </div>
+                    <div class="form-group" style="width: 50%">
+                        <label for="s_department" class="col-sm-4 control-label">院系</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="s_department">
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="saveEditBtn">保存</button>
             </div>
         </div>
     </div>

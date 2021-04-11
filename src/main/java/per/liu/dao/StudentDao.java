@@ -25,4 +25,10 @@ public interface StudentDao {
 
     //管理员模块：添加学生
     int addStudent(Student student);
+
+    //管理员：修改学生信息
+    int editStu(Student student);
+
+    //管理员：根据id查询学生信息
+    Student queryStuById(String id);
 }
