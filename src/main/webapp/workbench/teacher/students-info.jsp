@@ -28,14 +28,11 @@
     <script>
         $(function () {
             //页面加载后，自动加载学生信息
-            query_AllStudent();
+            query_AllStudentByTch();
 
-
-            function query_AllStudent() {
-
+            function query_AllStudentByTch() {
                 $.ajax({
-
-                    url:"user/query_AllStudent.do",
+                    url:"user/query_AllStudentByTch.do",
                     //规定要发送到服务器的数据，可以是：string， 数组，多数是 json
                     data:{
                     },
@@ -55,17 +52,10 @@
                             html+="<td>"+n.classe+"</td>";
                             html+="<td>"+n.major+"</td>";
                             html+="<td>"+n.department+"</td>";
-
-
                             html+="</tr>";
-
-
 
                         });
                         $("#showStu-body").html(html);
-
-
-
 
                     }
 

@@ -5,12 +5,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import per.liu.domain.Classe;
 import per.liu.domain.Manager;
 import per.liu.domain.Student;
 import per.liu.domain.Teacher;
+import per.liu.service.ClassService;
 import per.liu.service.ManagerService;
 import per.liu.service.StudentService;
 import per.liu.service.TeacherService;
+import per.liu.vo.StudentExtend;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -26,7 +29,7 @@ import java.util.Map;
  */
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("user")
 public class UserController {
 
     @Resource
@@ -35,6 +38,8 @@ public class UserController {
     private TeacherService teacherService;
     @Resource
     private ManagerService managerService;
+    @Resource
+    private ClassService classService;
 
     /*登录账号*/
     @RequestMapping("/login.do")
@@ -151,9 +156,9 @@ public class UserController {
     }
 
     //根据老师信息查询所负责学生信息
-    @RequestMapping("/query_AllStudent.do")
+    @RequestMapping("/query_AllStudentByTch.do")
     @ResponseBody
-    public List<Student> query_AllStudent(HttpServletRequest request){
+    public List<Student> query_AllStudentByTch(HttpServletRequest request){
 
         Teacher teacher = (Teacher) request.getSession().getAttribute("tch");
         List<Student> list = teacherService.query_AllStudent(teacher);
@@ -162,4 +167,35 @@ public class UserController {
         return list;
     }
 
+
+    //管理员模块：查询学生信息
+    @RequestMapping("/query_AllStudent.do")
+    @ResponseBody
+    public List<StudentExtend> query_AllStudent(){
+        List<StudentExtend> list =studentService.query_AllStudent();
+
+        return list;
+    }
+
+    @RequestMapping("/query-Class.do")
+    @ResponseBody
+    public List<Classe> queryClass(){
+
+        List<Classe> classeList = classService.queryClass();
+
+        return classeList;
+    }
+
+
+    @RequestMapping("/addStu.do")
+    @ResponseBody
+    public Boolean addStudent(Student student){
+
+        System.out.println(student);
+
+        Boolean flag = studentService.addStudent(student);
+
+
+        return flag;
+    }
 }

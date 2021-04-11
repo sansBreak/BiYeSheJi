@@ -92,9 +92,9 @@
             <dt><i class="Hui-iconfont">&#xe616;</i> 师生班级管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a data-href="stu-teach-class/stumanage.html" data-title="学生管理" href="javascript:void(0)">学生管理</a></li>
-                    <li><a data-href="stu-teach-class/classmanage.html" data-title="班级管理" href="javascript:void(0)">班级管理</a></li>
-                    <li><a data-href="stu-teach-class/teachmanage.html" data-title="教师管理" href="javascript:void(0)">教师管理</a></li>
+                    <li><a data-href="workbench/managers/stu-teach-class/stumanage.jsp" data-title="学生管理" href="javascript:void(0)">学生管理</a></li>
+                    <li><a data-href="workbench/managers/stu-teach-class/classmanage.html" data-title="班级管理" href="javascript:void(0)">班级管理</a></li>
+                    <li><a data-href="workbench/managers/stu-teach-class/teachmanage.html" data-title="教师管理" href="javascript:void(0)">教师管理</a></li>
                 </ul>
             </dd>
         </dl>

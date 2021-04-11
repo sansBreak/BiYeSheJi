@@ -16,4 +16,6 @@ public interface ClassService {
 
     //根据教师id，查询所负责班级
     List<Classe> queryClassByTch(String id);
+
+    List<Classe> queryClass();
 }

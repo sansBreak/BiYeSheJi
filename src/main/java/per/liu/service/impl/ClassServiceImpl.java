@@ -25,4 +25,11 @@ public class ClassServiceImpl implements ClassService {
 
         return classDao.queryClassByTch(id);
     }
+
+    @Override
+    public List<Classe> queryClass() {
+
+
+        return classDao.queryClass();
+    }
 }

@@ -5,9 +5,11 @@ import per.liu.dao.StudentDao;
 import per.liu.domain.Student;
 import per.liu.exception.LoginException;
 import per.liu.service.StudentService;
+import per.liu.vo.StudentExtend;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -35,7 +37,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Boolean changePwd(String loginPwd, String loginAct) {
-        boolean flag = false;
+        boolean flag = true;
 
         System.out.println("service层：：：" + loginAct + "   " + loginPwd);
         int count = 0;
@@ -48,6 +50,38 @@ public class StudentServiceImpl implements StudentService {
         if (count != 1) {
             flag = false;
         }
+        return flag;
+    }
+
+    //管理员模块：查询所有学生信息
+    @Override
+    public List<StudentExtend> query_AllStudent() {
+
+        List<StudentExtend>list = studentDao.query_AllStudent();
+
+
+        return list;
+    }
+
+    //管理员模块：添加学生
+    @Override
+    public Boolean addStudent(Student student) {
+        boolean flag = true;
+
+        //完善数据
+        student.setLoginPwd("123456");
+
+        int result = 0;
+        try {
+            result = studentDao.addStudent(student);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        if (result != 1) {
+            flag = false;
+        }
+
         return flag;
     }
 }

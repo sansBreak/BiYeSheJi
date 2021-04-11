@@ -15,5 +15,14 @@
 
     </select>
 
+    <select id="queryClass" resultType="Classe">
+
+        select
+            id,
+            name
+        from tbl_class
+
+    </select>
+
 
 </mapper>

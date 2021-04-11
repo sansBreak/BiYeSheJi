@@ -26,6 +26,54 @@
 
     </update>
 
+    <select id="query_AllStudent" resultType="StudentExtend">
+
+        SELECT
+            s.id,
+            s.loginAct,
+            s.name,
+            s.email,
+            s.loginPwd,
+            s.grade,
+            s.major,
+            s.department,
+            s.classId AS classId,
+            c.name as className,
+            t.id AS teacherId,
+            t.name AS teacherName
+
+        FROM tbl_student s
+        JOIN tbl_class c ON c.id=s.classId
+        JOIN tbl_teacher t ON c.teacherId = t.id
 
 
+    </select>
+
+    <insert id="addStudent" >
+
+        INSERT INTO tbl_student(
+
+            loginAct,
+            name,
+            email,
+            loginPwd,
+            grade,
+            major,
+            department,
+            classId
+
+        )VALUES(
+
+            #{loginAct},
+            #{name},
+            #{email},
+            #{loginPwd},
+            #{grade},
+            #{major},
+            #{department},
+            #{classId}
+
+        )
+
+    </insert>
 </mapper>

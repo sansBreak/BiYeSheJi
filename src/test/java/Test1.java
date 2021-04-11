@@ -1,4 +1,5 @@
 import per.liu.utils.RandomID;
+import per.liu.vo.StudentExtend;
 
 /**
  * @Description
@@ -12,5 +13,6 @@ public class Test1 {
         String id  = RandomID.createOrderId();
 
         System.out.println(id);
+
     }
 }

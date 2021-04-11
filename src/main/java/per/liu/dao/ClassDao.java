@@ -16,4 +16,5 @@ public interface ClassDao {
     List<Classe> queryClassByTch(String id);
 
 
+    List<Classe> queryClass();
 }
