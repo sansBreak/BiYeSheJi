@@ -225,4 +225,54 @@ public class UserController {
 
         return studentService.deleteStuById(id);
     }
+
+
+    @RequestMapping("/query_AllClass.do")
+    @ResponseBody
+    public List<Map<String, Object>> query_AllClass(){
+        /*
+        * 返回值为tbl_class 中的id name teacherId 和tbl_teacher 中的name
+        * */
+
+        List<Map<String, Object>> mapList = classService.query_AllClass();
+
+
+        return mapList;
+    }
+
+    @RequestMapping("/queryAllTch.do")
+    @ResponseBody
+    public List<Teacher> queryAllTch(){
+
+
+        return teacherService.queryAllTch();
+
+    }
+
+    @RequestMapping("/queryClassById.do")
+    @ResponseBody
+    public Classe queryClassById(String id){
+
+        //根据班级id，查询其他信息
+        return  classService.queryClassById(id);
+    }
+
+    @RequestMapping("/editClass.do")
+    @ResponseBody
+    public Boolean editClass(Classe classe){
+
+        System.out.println("=======================\n"+ classe);
+        //修改班级信息
+        Boolean flag = classService.editClass(classe);
+
+        return flag;
+    }
+
+    @RequestMapping("/deleteClassById.do")
+    @ResponseBody
+    public Boolean deleteClassById(String id){
+
+        return  classService.deleteClassById(id);
+
+    }
 }

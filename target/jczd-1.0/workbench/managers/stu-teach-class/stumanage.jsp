@@ -170,7 +170,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
                             html+="<td>"+n.className+"</td>";
                             html+="<td>"+n.teacherName+"</td>";
                             html += "<td><a ONCLICK='edit(\"" + n.id + "\")'  href='javascript:void(0);' ><span class='glyphicon glyphicon-pencil'></span>编辑</a> &nbsp;&nbsp;";//状态
-                            html += "<a ONCLICK='deleteStu(\"" + n.id + "\")'  href='javascript:void(0);' ><span class='glyphicon glyphicon-pencil'></span>删除</a></td>";//状态
+                            html += "<a ONCLICK='deleteStu(\"" + n.id + "\")'  href='javascript:void(0);' ><span class='glyphicon glyphicon-remove'></span>删除</a></td>";//状态
 
                             html+="</tr>";
 
@@ -182,9 +182,6 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
                 });
 
             }
-
-
-
         })
 
 
@@ -195,7 +192,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 <body>
 
 <script>
-    //编辑学生信息的窗口
+    //打开编辑学生信息的窗口
     function edit(id){
         $("#editModal").modal("show");
         //放入学生id
@@ -238,11 +235,6 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 
             }
         });
-
-
-
-
-
     }
 
     //删除学生
@@ -300,7 +292,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
                     html+="<td>"+n.className+"</td>";
                     html+="<td>"+n.teacherName+"</td>";
                     html += "<td><a ONCLICK='edit(\"" + n.id + "\")'  href='javascript:void(0);' ><span class='glyphicon glyphicon-pencil'></span>编辑</a>&nbsp;&nbsp;";//状态
-                    html += "<a ONCLICK='deleteStu(\"" + n.id + "\")'  href='javascript:void(0);' ><span class='glyphicon glyphicon-pencil'></span>删除</a></td>";//状态
+                    html += "<a ONCLICK='deleteStu(\"" + n.id + "\")'  href='javascript:void(0);' ><span class='glyphicon glyphicon-remove'></span>删除</a></td>";//状态
 
                     html+="</tr>";
 

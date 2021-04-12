@@ -24,5 +24,52 @@
 
     </select>
 
+    <select id="query_AllClass" resultType="java.util.Map">
 
+        SELECT
+
+            c.id,
+            c.name,
+            c.teacherId AS tchId,
+            t.name AS tchName
+
+        FROM tbl_class c
+        JOIN tbl_teacher t ON c.teacherId=t.id
+
+
+    </select>
+
+    <select id="queryClassById" resultType="Classe">
+
+        select
+            id,
+            name
+
+        from  tbl_class
+        where id=#{id}
+
+    </select>
+
+    <update id="editClass">
+
+        update tbl_class
+
+         set
+             name=#{name},
+             teacherId=#{teacherId}
+
+        where id=#{id}
+
+
+    </update>
+
+    <delete id="deleteClassById">
+
+        delete
+
+        from tbl_class
+        
+        where id=#{id}
+
+</delete>
 </mapper>

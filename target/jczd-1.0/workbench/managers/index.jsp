@@ -93,7 +93,7 @@
             <dd>
                 <ul>
                     <li><a data-href="workbench/managers/stu-teach-class/stumanage.jsp" data-title="学生管理" href="javascript:void(0)">学生管理</a></li>
-                    <li><a data-href="workbench/managers/stu-teach-class/classmanage.html" data-title="班级管理" href="javascript:void(0)">班级管理</a></li>
+                    <li><a data-href="workbench/managers/stu-teach-class/classmanage.jsp" data-title="班级管理" href="javascript:void(0)">班级管理</a></li>
                     <li><a data-href="workbench/managers/stu-teach-class/teachmanage.html" data-title="教师管理" href="javascript:void(0)">教师管理</a></li>
                 </ul>
             </dd>

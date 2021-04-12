@@ -79,6 +79,12 @@ public class TeacherServiceImpl implements TeacherService {
 
         return studentList;
     }
+    //查询所有老师信息
+    @Override
+    public List<Teacher> queryAllTch() {
+
+            return teacherDao.queryAllTch();
+    }
 
 
 }

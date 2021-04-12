@@ -23,4 +23,6 @@ public interface TeacherDao {
     //根据老师信息查询所负责学生信息
     List<Student> query_AllStudentByTchId(List<Classe> classeList);
 
+    //查询所有老师信息
+    List<Teacher> queryAllTch();
 }
