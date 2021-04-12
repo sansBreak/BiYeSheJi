@@ -86,4 +86,18 @@ public class ClassServiceImpl implements ClassService {
 
         return flag;
     }
+
+    //管理员：添加班级
+    @Override
+    public Boolean addClass(Classe classe) {
+        boolean flag = true;
+
+        int result = classDao.addClass(classe);
+
+        if (result != 1) {
+            flag = false;
+        }
+
+        return flag;
+    }
 }

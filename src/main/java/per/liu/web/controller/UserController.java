@@ -275,4 +275,16 @@ public class UserController {
         return  classService.deleteClassById(id);
 
     }
+
+    @RequestMapping("/addClass.do")
+    @ResponseBody
+    public Boolean addClass(Classe classe){
+        System.out.println(classe);
+
+        Boolean flag = classService.addClass(classe);
+
+        System.out.println("=---------------------------=");
+
+        return flag;
+    }
 }

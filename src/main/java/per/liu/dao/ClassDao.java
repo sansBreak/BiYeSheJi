@@ -30,4 +30,7 @@ public interface ClassDao {
 
     //根据班级id，查询其他信息
     int deleteClassById(String id);
+
+    //管理员：添加班级
+    int addClass(Classe classe);
 }

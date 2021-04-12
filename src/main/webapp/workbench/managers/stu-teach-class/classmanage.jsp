@@ -33,6 +33,63 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
             //页面加载后加载列表内容
             query_AllClass();
 
+            //打开添加班级窗口
+            $("#addClassBtn").click(function () {
+
+                //发起ajax  取得所有班级名,并填充数据
+                $.ajax({
+                    url: "user/queryAllTch.do",
+                    //规定要发送到服务器的数据，可以是：string， 数组，多数是 json
+                    type: "get",
+                    dataType: "json",
+                    success: function (data) {
+                        $.each(data, function (i, n) {
+                            var html = "";
+                            $.each(data, function (i, n) {
+                                html += "<option value='" + n.id + "'> " + n.name + "</option>";
+                            });
+                            $("#add_tchName").html(html);
+                        })
+                    }
+                });
+
+                //打开 模态窗口
+                $("#addModal").modal("show");
+            });
+
+
+            //保存学生信息
+            $("#add_saveBtn").click(function () {
+
+                var teacherId = $.trim($("#add_tchName").val());
+                var name = $.trim($("#add_name").val());
+
+
+                $.ajax({
+                    url:"user/addClass.do",
+                    //规定要发送到服务器的数据，可以是：string， 数组，多数是 json
+                    data:{
+                        "teacherId":teacherId,
+                        "name":name,
+                    },
+                    type:"post",
+                    dataType:"json",
+                    success:function (data) {
+                        if (data){
+                            query_AllClass();
+                            toastr.success("添加成功！");
+                            document.getElementById("addClassForm").reset();
+                        }else {
+                            toastr.error("添加失败！")
+                        }
+                        $("#addModal").modal("hide");
+
+                    }
+                });
+
+            });
+
+
             //修改班级信息
             $("#saveEditBtn").click(function () {
                 var c_id = $.trim($("#c_id").val());
@@ -153,7 +210,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 
     }
 
-    //删除学生
+    //删除班级
     function deleteClass(id){
         /*删除前，先弹出警告框，进行二次确认*/
         $("#deleteModal").modal("show");
@@ -214,16 +271,14 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
     }
 </script>
 
-
 <div>
     <h2 style="text-align: center;">班级 信息</h2>
 </div>
 
-
 <div class="page-container-200">
     <div style="background-color: #f7f7f6">
-        <button type="button" class="btn btn-default btn-primary " aria-label="Left Align">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"> 创建新班级</span>
+        <button type="button" id="addClassBtn" class="btn btn-default btn-primary " aria-label="Left Align">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"> 添加班级</span>
         </button>
     </div>
     <!--表格正文-->
@@ -241,6 +296,43 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 
             </tbody>
         </table>
+    </div>
+</div>
+
+<!-- 添加班级信息 -->
+<div class="modal fade" id="addModal" role="dialog">
+    <div class="modal-dialog" role="document" style="width: 70%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel1">班级添加</h4>
+            </div>
+            <div class="modal-body" >
+                <form id="addClassForm" class="form-horizontal" role="form">
+                    <div class="form-group" style="width: 60%">
+                        <label for="add_name" class="col-sm-4 control-label">班级</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="add_name">
+                        </div>
+                    </div>
+                    <div class="form-group" style="width: 60%">
+                        <label for="add_tchName" class="col-sm-4 control-label">老师</label>
+                        <div class="col-sm-8">
+                            <select class="form-control" id="add_tchName">
+
+
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="add_saveBtn">保存</button>
+            </div>
+        </div>
     </div>
 </div>
 

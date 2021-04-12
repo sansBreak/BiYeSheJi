@@ -35,9 +35,9 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 
             //打开添加学生窗口
             $("#addStu").click(function () {
-                //发起ajax  取得所有班级名,并填充数据
+                //发起ajax  取得所有老师名,并填充数据
                 $.ajax({
-                    url: "user/query-Class.do",
+                    url: "user/queryAllTch.do",
                     //规定要发送到服务器的数据，可以是：string， 数组，多数是 json
                     type: "get",
                     dataType: "json",

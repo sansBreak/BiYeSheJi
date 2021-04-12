@@ -31,4 +31,7 @@ public interface ClassService {
 
     //根据班级id，删除其他信息
     Boolean deleteClassById(String id);
+
+    //管理员：添加班级
+    Boolean addClass(Classe classe);
 }

@@ -68,8 +68,26 @@
         delete
 
         from tbl_class
-        
+
         where id=#{id}
 
-</delete>
+    </delete>
+
+    <insert id="addClass">
+
+        INSERT INTO tbl_class(
+
+            teacherId,
+            name
+
+
+        )VALUES(
+
+            #{teacherId},
+            #{name}
+
+
+        )
+
+    </insert>
 </mapper>
