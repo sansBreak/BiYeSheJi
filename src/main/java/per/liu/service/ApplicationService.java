@@ -31,4 +31,5 @@ public interface ApplicationService {
 
     //管理员模块：删除已审批的申请
     Boolean deleteApplication(String id);
+
 }

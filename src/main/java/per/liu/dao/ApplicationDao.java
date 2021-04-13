@@ -41,4 +41,5 @@ public interface ApplicationDao {
     Application queryBookInfoById(@Param("id")String id);
 
     int deleteApplication(@Param("id")String id);
+
 }

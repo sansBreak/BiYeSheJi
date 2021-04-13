@@ -112,12 +112,16 @@ public class ApplicationController {
 
         return flag;
     }
+
     @RequestMapping("/delete-Application.do")
     @ResponseBody
-    public Boolean deleteAllApplication(String id){
+    public Boolean deleteApplication(String id){
         System.out.println(id);
         Boolean flag = applicationService.deleteApplication(id);
 
+
         return flag;
     }
+
+
 }
