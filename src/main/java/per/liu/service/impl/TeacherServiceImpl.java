@@ -72,18 +72,19 @@ public class TeacherServiceImpl implements TeacherService {
         //2、根据班级信息，查出这些所属学生信息
         List<Student> studentList = null;
         try {
-         studentList=  teacherDao.query_AllStudentByTchId(classList);
-        }catch (Exception e){
+            studentList = teacherDao.query_AllStudentByTchId(classList);
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         return studentList;
     }
+
     //查询所有老师信息
     @Override
     public List<Teacher> queryAllTch() {
 
-            return teacherDao.queryAllTch();
+        return teacherDao.queryAllTch();
     }
 
     //查询所有老师信息
@@ -97,9 +98,39 @@ public class TeacherServiceImpl implements TeacherService {
         int result = 0;
         try {
             result = teacherDao.addTch(teacher);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
+
+        if (result != 1) {
+            flag = false;
+        }
+
+        return flag;
+    }
+
+    //根据id查询教师信息
+    @Override
+    public Teacher queryTchById(String id) {
+        Teacher teacher = null;
+
+        try {
+            teacher = teacherDao.queryTchById(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        return teacher;
+    }
+
+    //修改老师信息
+    @Override
+    public Boolean editTch(Teacher teacher) {
+
+        boolean flag = true;
+
+        int result = teacherDao.editTch(teacher);
 
         if (result != 1) {
             flag = false;

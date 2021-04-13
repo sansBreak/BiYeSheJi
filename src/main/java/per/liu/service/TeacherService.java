@@ -27,4 +27,10 @@ public interface TeacherService {
 
     //添加新的老师
     Boolean addTch(Teacher teacher);
+
+    //根据id查询教师信息
+    Teacher queryTchById(String id);
+
+    //修改老师信息
+    Boolean editTch(Teacher teacher);
 }

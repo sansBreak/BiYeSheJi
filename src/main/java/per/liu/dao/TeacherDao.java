@@ -28,4 +28,10 @@ public interface TeacherDao {
 
     //查询所有老师信息
     int addTch(Teacher teacher);
+
+    //根据id查询教师信息
+    Teacher queryTchById(@Param("id")String id);
+
+    //修改老师信息
+    int editTch(Teacher teacher);
 }

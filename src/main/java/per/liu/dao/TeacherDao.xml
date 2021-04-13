@@ -91,4 +91,36 @@
         )
 
     </insert>
+
+    <select id="queryTchById" resultType="Teacher">
+
+        select
+
+            id,
+            loginAct,
+            name,
+            email,
+            department
+
+
+        from tbl_teacher
+        where id=#{id}
+
+
+    </select>
+
+    <update id="editTch">
+
+        update tbl_teacher
+
+        set
+
+         loginAct=#{loginAct},
+         name=#{name},
+         email=#{email},
+         department=#{department}
+
+        where id=#{id}
+
+    </update>
 </mapper>

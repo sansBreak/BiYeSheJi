@@ -297,4 +297,23 @@ public class UserController {
         return teacherService.addTch(teacher);
     }
 
+
+    @RequestMapping("/queryTchById.do")
+    @ResponseBody
+    public Teacher queryTchById(String id){
+        Teacher teacher =   teacherService.queryTchById(id);
+
+        return teacher;
+
+    }
+
+    @RequestMapping("/editTch.do")
+    @ResponseBody
+    public Boolean editTch(Teacher teacher){
+
+
+        return teacherService.editTch(teacher);
+
+    }
+
 }
