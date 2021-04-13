@@ -2,6 +2,8 @@ package per.liu.dao;
 
 import org.apache.ibatis.annotations.Param;
 import per.liu.domain.Book;
+import per.liu.vo.ApplicationVo;
+
 import java.util.List;
 
 /**
@@ -24,4 +26,8 @@ public interface BookDao {
 
     //管理员：图书入库
     int bookAdd(Book book);
+
+    //根据学生班级查询，已通过审批的图书信息，即学生即将领到的书籍
+    List<ApplicationVo> queryReceiveBooks(@Param("classId")String classId,
+                                          @Param("status")String status);
 }

@@ -26,4 +26,7 @@ public interface BookService {
 
     //管理员：图书入库
     Boolean bookAdd(Book book);
+
+    //根据学生班级查询，已通过审批的图书信息，即学生即将领到的书籍
+    List<ApplicationVo> queryReceiveBooks(String classId);
 }

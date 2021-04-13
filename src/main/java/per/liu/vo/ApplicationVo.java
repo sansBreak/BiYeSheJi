@@ -14,6 +14,10 @@ public class ApplicationVo {
     private String book_name;     //图书名称
     private String book_price;     //图书价格
     private String book_publisher;     //图书出版社
+    private String author;     //图书出版社
+    private String pub_time;     //图书出版社
+    private String storage_time;     //图书出版社
+    private String isbn;     //图书ISBN
     private String tch_id;      //申请老师id
     private String tch_name;      //申请老师姓名
     private String appli_amount;        //申请数量
@@ -22,6 +26,38 @@ public class ApplicationVo {
     private String class_id;        //班级id
     private String class_name;        //班级名称
     private String status;      //申请状态（0：未审批 1：审批通过 -1：审批未通过）
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getPub_time() {
+        return pub_time;
+    }
+
+    public void setPub_time(String pub_time) {
+        this.pub_time = pub_time;
+    }
+
+    public String getStorage_time() {
+        return storage_time;
+    }
+
+    public void setStorage_time(String storage_time) {
+        this.storage_time = storage_time;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
 
     public String getId() {
         return id;
@@ -135,6 +171,10 @@ public class ApplicationVo {
                 ", book_name='" + book_name + '\'' +
                 ", book_price='" + book_price + '\'' +
                 ", book_publisher='" + book_publisher + '\'' +
+                ", author='" + author + '\'' +
+                ", pub_time='" + pub_time + '\'' +
+                ", storage_time='" + storage_time + '\'' +
+                ", isbn='" + isbn + '\'' +
                 ", tch_id='" + tch_id + '\'' +
                 ", tch_name='" + tch_name + '\'' +
                 ", appli_amount='" + appli_amount + '\'' +

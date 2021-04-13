@@ -76,5 +76,28 @@ public class BookServiceImpl implements BookService {
         return flag;
     }
 
+    //根据学生班级查询，已通过审批的图书信息，即学生即将领到的书籍
+    @Override
+    public List<ApplicationVo> queryReceiveBooks(String classId) {
+        System.out.println("-------service层------");
+        List<ApplicationVo> voList = null;
+        try {
+            voList = bookDao.queryReceiveBooks(classId,"1");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+        System.out.println("=======================================");
+
+        for (ApplicationVo vo:voList) {
+            System.out.println("vo:" + vo);
+        }
+
+        System.out.println("=======================================");
+
+        return voList;
+    }
+
 
 }

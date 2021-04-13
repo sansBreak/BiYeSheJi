@@ -37,6 +37,7 @@
             a.grant_time,
             t.name AS tch_name,
             b.name AS book_name,
+            b.ISBN AS isbn,
             b.price AS book_price,
             b.publisher AS book_publisher,
             c.name AS class_name

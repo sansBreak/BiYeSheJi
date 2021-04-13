@@ -91,6 +91,23 @@ public class BookController {
         return flag;
     }
 
+    @RequestMapping("/queryReceiveBooks.do")
+    @ResponseBody
+    public List<ApplicationVo> queryReceiveBooks(HttpServletRequest request){
+        //根据学生班级查询，已通过审批的图书信息，即学生即将领到的书籍
+        /*
+        * 参数：学生班级id、
+        * 返回值：申请id、图书名、图书id（bId ：BK10011）、图书ISBN、作者、单价、出版社、出版社、出版时间、入库时间、领书时间、领书地点
+        * */
 
+        Student student = (Student) request.getSession().getAttribute("stu");
+
+
+        return  bookService.queryReceiveBooks(student.getClassId());
+
+
+
+
+    }
 
 }

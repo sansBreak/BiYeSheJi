@@ -93,4 +93,37 @@
 
 
     </insert>
+
+    <select id="queryReceiveBooks" resultType="ApplicationVo">
+
+        SELECT
+
+            a.id,
+            a.tch_id,
+            a.book_id,
+            a.appli_amount,
+            a.class_id,
+            a.status,
+            a.grant_place,
+            a.grant_time,
+            t.name AS tch_name,
+            b.ISBN AS isbn,
+            b.name AS book_name,
+            b.price AS book_price,
+            b.author AS author,
+            b.pub_time AS pub_time,
+            b.storage_time AS storage_time,
+            b.publisher AS book_publisher,
+            c.name AS class_name
+
+        FROM tbl_application a
+        JOIN tbl_teacher t ON a.tch_id=t.id
+        JOIN tbl_books b ON a.book_id=b.id
+        JOIN tbl_class c ON a.class_id=c.id
+
+
+        WHERE  c.id = #{classId} and a.status=#{status}
+
+
+    </select>
 </mapper>

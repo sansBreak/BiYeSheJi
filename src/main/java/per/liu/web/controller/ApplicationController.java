@@ -65,15 +65,9 @@ public class ApplicationController {
         * */
         Teacher teacher = (Teacher) request.getSession().getAttribute("tch");
         String tch_id = teacher.getId();
-        System.out.println("======"+tch_id+"=====");
+
         List<ApplicationVo> voList = applicationService.queryAllApplicationByTch(tch_id);
 
-        System.out.println("---------------controller------------------");
-        for (ApplicationVo a : voList) {
-            System.out.println(a);
-        }
-
-        System.out.println("----------------------------------------");
 
         return voList;
     }

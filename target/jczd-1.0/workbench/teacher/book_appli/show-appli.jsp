@@ -62,7 +62,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 
                             }else if ("审批未通过" == n.status){
                                 html += "<td STYLE='color: #d9534f'>" + n.status + "</td>";//状态
-                                html += "<td><a ONCLICK='delete(\"" + n.id + "\")'  href='javascript:void(0);' ><span class='glyphicon glyphicon-remove'></span>撤销</a></td>";//状态
+                                html += "<td><a ONCLICK='delete(\"" + n.id + "\")'  href='javascript:void(0);' ><span class='glyphicon glyphicon-remove'></span>删除</a></td>";//状态
 
                             }else if ("审批通过" == n.status){
                                 html += "<td STYLE='color: #5cb85c'>" + n.status + "</td>";//状态
