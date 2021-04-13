@@ -66,6 +66,8 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 
                             }else if ("审批通过" == n.status){
                                 html += "<td STYLE='color: #5cb85c'>" + n.status + "</td>";//状态
+                                html += "<td><a  href='javascript:void(0);' ><span class='glyphicon glyphicon-ok'></span></a></td>";//状态
+
                             }
                             html+="</tr>";
 

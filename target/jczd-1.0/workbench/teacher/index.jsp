@@ -95,14 +95,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
                 </ul>
             </dd>
         </dl>
-        <dl id="menu-bookpurchase">
-            <dt><i class="Hui-iconfont">&#xe616;</i> 申请购置教材<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-            <dd>
-                <ul>
-                    <li><a data-href="workbench/teacher/purchase-books.html" data-title="申请购置教材" href="javascript:void(0)">申请购置教材</a></li>
-                </ul>
-            </dd>
-        </dl>
+
         <dl id="menu-booksub">
             <dt><i class="Hui-iconfont">&#xe616;</i> 订书订单管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
@@ -116,9 +109,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
                 <ul>
                     <li><a data-href="workbench/teacher/book_appli/show-appli.jsp" data-title="申请列表" href="javascript:void(0)">申请列表</a></li>
                 </ul>
-                <ul>
-                    <li><a data-href="workbench/teacher/book_appli/unsub.html" data-title="退订教材" href="javascript:void(0)">退订教材</a></li>
-                </ul>
+
             </dd>
         </dl>
         <dl id="menu-myData">

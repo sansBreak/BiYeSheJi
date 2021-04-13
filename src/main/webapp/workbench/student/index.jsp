@@ -77,14 +77,6 @@
 <aside class="Hui-aside">
     <div class="menu_dropdown bk_2">
 
-        <dl id="menu-charge">
-            <dt><i class="Hui-iconfont">&#xe616;</i> 收费信息<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-            <dd>
-                <ul>
-                    <li><a data-href="workbench/student/charge/index.jsp" data-title="收费详单" href="javascript:void(0)">查看收费详单</a></li>
-                </ul>
-            </dd>
-        </dl>
         <dl id="menu-collection">
             <dt><i class="Hui-iconfont">&#xe616;</i> 领书信息<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>

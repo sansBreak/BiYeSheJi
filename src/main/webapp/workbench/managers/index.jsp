@@ -109,9 +109,7 @@
                     <li><a data-href="workbench/managers/book-manage/book-register.jsp" data-title="教材入库" href="javascript:void(0)">图书入库</a>
                     </li>
                 </ul>
-                <ul>
-                    <li><a data-href="workbench/managers/book-manage/book-purchase-appl.html" data-title="教材购置申请" href="javascript:void(0)">教材购置申请</a></li>
-                </ul>
+
             </dd>
         </dl>
         <dl id="menu-booksub">
