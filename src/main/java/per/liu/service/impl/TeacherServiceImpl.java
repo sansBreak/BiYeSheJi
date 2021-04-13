@@ -86,5 +86,27 @@ public class TeacherServiceImpl implements TeacherService {
             return teacherDao.queryAllTch();
     }
 
+    //查询所有老师信息
+    @Override
+    public Boolean addTch(Teacher teacher) {
+
+        boolean flag = true;
+
+        teacher.setLoginPwd("123456");
+
+        int result = 0;
+        try {
+            result = teacherDao.addTch(teacher);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        if (result != 1) {
+            flag = false;
+        }
+
+        return flag;
+    }
+
 
 }

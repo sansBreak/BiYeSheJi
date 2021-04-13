@@ -244,7 +244,6 @@ public class UserController {
     @ResponseBody
     public List<Teacher> queryAllTch(){
 
-
         return teacherService.queryAllTch();
 
     }
@@ -287,4 +286,15 @@ public class UserController {
 
         return flag;
     }
+
+    @RequestMapping("/addTch.do")
+    @ResponseBody
+    public Boolean addTch(Teacher teacher){
+
+        System.out.println(teacher);
+
+
+        return teacherService.addTch(teacher);
+    }
+
 }

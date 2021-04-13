@@ -24,4 +24,7 @@ public interface TeacherService {
 
     //查询所有老师信息
     List<Teacher> queryAllTch();
+
+    //添加新的老师
+    Boolean addTch(Teacher teacher);
 }

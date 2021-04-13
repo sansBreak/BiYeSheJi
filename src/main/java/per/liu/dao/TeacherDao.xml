@@ -57,9 +57,38 @@
         select
 
             id,
-            name
+            loginAct,
+            name,
+            email,
+            department
+
 
         from tbl_teacher
 
     </select>
+
+    <insert id="addTch">
+
+
+        INSERT INTO tbl_teacher(
+
+            loginAct,
+            name,
+            email,
+            loginPwd,
+            department
+
+
+        )VALUES(
+
+            #{loginAct},
+            #{name},
+            #{email},
+            #{loginPwd},
+            #{department}
+
+
+        )
+
+    </insert>
 </mapper>

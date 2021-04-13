@@ -4,7 +4,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 %>
 <!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html lang="en">
+<html>
 <head>
     <base href="<%=basePath%>">
     <link rel="stylesheet" type="text/css" href="workbench/static/h-ui/css/H-ui.min.css"/>
@@ -37,7 +37,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
             $("#addStu").click(function () {
                 //发起ajax  取得所有老师名,并填充数据
                 $.ajax({
-                    url: "user/queryAllTch.do",
+                    url: "user/query-Class.do",
                     //规定要发送到服务器的数据，可以是：string， 数组，多数是 json
                     type: "get",
                     dataType: "json",
@@ -67,6 +67,13 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
                 var department = $.trim($("#department").val());
                 var classId = $.trim($("#classe").val());
 
+                if(loginAct == "" || name == "" || email == "" || grade == "" || major == "" ||
+                    department == "" || classId == ""){
+
+                    toastr.warning("请输入完整信息");
+                    return false;
+                }
+
                 $.ajax({
                     url:"user/addStu.do",
                     //规定要发送到服务器的数据，可以是：string， 数组，多数是 json
@@ -94,7 +101,6 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
                 });
 
             });
-
             //修改学生信息
             $("#saveEditBtn").click(function () {
                 var s_id = $.trim($("#s_id").val());
@@ -183,8 +189,6 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 
             }
         })
-
-
     </script>
 
 

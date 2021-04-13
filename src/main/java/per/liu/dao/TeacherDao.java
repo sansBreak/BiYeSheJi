@@ -25,4 +25,7 @@ public interface TeacherDao {
 
     //查询所有老师信息
     List<Teacher> queryAllTch();
+
+    //查询所有老师信息
+    int addTch(Teacher teacher);
 }
