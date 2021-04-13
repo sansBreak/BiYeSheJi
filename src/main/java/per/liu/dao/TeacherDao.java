@@ -34,4 +34,7 @@ public interface TeacherDao {
 
     //修改老师信息
     int editTch(Teacher teacher);
+
+    //删除老师信息
+    int deleteTchById(String id);
 }

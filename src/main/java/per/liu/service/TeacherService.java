@@ -33,4 +33,7 @@ public interface TeacherService {
 
     //修改老师信息
     Boolean editTch(Teacher teacher);
+
+    //删除老师信息
+    Boolean deleteTchById(String id);
 }

@@ -139,5 +139,21 @@ public class TeacherServiceImpl implements TeacherService {
         return flag;
     }
 
+    //删除老师信息
+    @Override
+    public Boolean deleteTchById(String id) {
+
+
+        boolean flag = true;
+
+        int result = teacherDao.deleteTchById(id);
+
+        if (result != 1) {
+            flag = false;
+        }
+
+        return flag;
+    }
+
 
 }

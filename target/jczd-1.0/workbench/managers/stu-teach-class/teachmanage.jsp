@@ -107,13 +107,13 @@
                         if (data) {
                             toastr.success("修改成功成功！");
                             //之后刷新图书列表，更新内容
-                            query_AllStudent();
+                            query_AllTeacher();
                         } else {
                             toastr.error("修改失败！")
                         }
                     }
                 });
-                
+
                 //关闭前处理窗口内内容
 
                 document.getElementById("editTchForm").reset();
@@ -141,7 +141,7 @@
                             html += "<td>" + n.email + "</td>";
                             html += "<td>" + n.department + "</td>";
                             html += "<td><a ONCLICK='edit(\"" + n.id + "\")'  href='javascript:void(0);' ><span class='glyphicon glyphicon-pencil'></span>编辑</a> &nbsp;&nbsp;";//状态
-                            html += "<a ONCLICK='deleteStu(\"" + n.id + "\")'  href='javascript:void(0);' ><span class='glyphicon glyphicon-remove'></span>删除</a></td>";//状态
+                            html += "<a ONCLICK='deleteTch(\"" + n.id + "\")'  href='javascript:void(0);' ><span class='glyphicon glyphicon-remove'></span>删除</a></td>";//状态
 
                             html += "</tr>";
 
@@ -162,7 +162,7 @@
 </head>
 <body>
 <script>
-    //打开编辑学生信息的窗口
+    //打开编辑教师信息的窗口
     function edit(id) {
         $("#editModal").modal("show");
         //放入教工id
@@ -187,7 +187,67 @@
         });
     }
 
+    //删除教师
+    function deleteTch(id){
+        /*删除前，先弹出警告框，进行二次确认*/
+        $("#deleteModal").modal("show");
+        //点击确认键后
+        $("#deleteHaulBtn").click(function () {
+            $.ajax({
+                url:"user/deleteTchById.do",
+                //规定要发送到服务器的数据，可以是：string， 数组，多数是 json
+                data:{
+                    "id":id,
+                },
+                type:"get",
+                dataType:"json",
+                success:function (data) {
+                    if (data){
+                        toastr.success("删除成功！");
+                        query_AllTeacher();
+                    }else {
+                        toastr.success("删除失败！");
+                        query_AllTeacher();
+                    }
+                    $("#deleteModal").modal("hide");
+                }
+            });
 
+        });
+    }
+
+    //加载所有学生信息
+    function query_AllTeacher() {
+        $.ajax({
+            url: "user/queryAllTch.do",
+            //规定要发送到服务器的数据，可以是：string， 数组，多数是 json
+            data: {},
+            type: "post",
+            dataType: "json",
+            success: function (data) {
+
+                var html = "";
+                $.each(data, function (i, n) {
+
+                    html += "<tr class='text-c'>";
+                    html += "<td>" + n.id + "</td>";
+                    html += "<td>" + n.loginAct + "</td>";
+                    html += "<td>" + n.name + "</td>";
+                    html += "<td>" + n.email + "</td>";
+                    html += "<td>" + n.department + "</td>";
+                    html += "<td><a ONCLICK='edit(\"" + n.id + "\")'  href='javascript:void(0);' ><span class='glyphicon glyphicon-pencil'></span>编辑</a> &nbsp;&nbsp;";//状态
+                    html += "<a ONCLICK='deleteTch(\"" + n.id + "\")'  href='javascript:void(0);' ><span class='glyphicon glyphicon-remove'></span>删除</a></td>";//状态
+
+                    html += "</tr>";
+
+                });
+                $("#showTch-body").html(html);
+
+            }
+
+        });
+
+    }
 </script>
 
 
@@ -321,6 +381,30 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                 <button type="button" class="btn btn-primary" id="saveEditBtn">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--信息删除确认 模态窗口-->
+<div class="modal fade" id="deleteModal">
+    <div class="modal-dialog">
+        <div class="modal-content message_align">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h3 class="modal-title">提示</h3>
+            </div>
+            <div class="modal-body">
+                <!-- 隐藏需要删除的id -->
+                <input type="hidden" id="deleteHaulId" />
+                <p style="font-size: 15px">该学生信息删除后不可恢复，请确认是否要删除？</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="deleteHaulBtn">确认</button>
             </div>
         </div>
     </div>

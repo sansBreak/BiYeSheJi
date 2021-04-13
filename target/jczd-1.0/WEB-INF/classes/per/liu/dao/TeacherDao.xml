@@ -123,4 +123,13 @@
         where id=#{id}
 
     </update>
+
+    <delete id="deleteTchById">
+
+        delete
+
+        from tbl_teacher
+        where id=#{id}
+
+    </delete>
 </mapper>

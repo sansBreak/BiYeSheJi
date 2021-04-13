@@ -316,4 +316,11 @@ public class UserController {
 
     }
 
+    @RequestMapping("/deleteTchById.do")
+    @ResponseBody
+    public Boolean deleteTchById(String id){
+
+
+        return teacherService.deleteTchById(id);
+    }
 }
