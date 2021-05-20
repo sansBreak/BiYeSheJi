@@ -47,7 +47,7 @@ public class StudentServiceImpl implements StudentService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if (count != 1) {
+        if (count != 1) {  
             flag = false;
         }
         return flag;

@@ -44,7 +44,6 @@
             //编辑模态窗口内，保存修改后的图书信息
             $("#saveBtn").click(function () {
 
-
                 $.ajax({
                     url: "workbench/book/updateBookById.do",
                     data: {

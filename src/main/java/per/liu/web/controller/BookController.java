@@ -40,6 +40,16 @@ public class BookController {
         return bookList;
     }
 
+    //搜索
+    @RequestMapping("/query-Book.do")
+    @ResponseBody
+    public List<Book> queryBook(String name, String author, String publisher){
+
+        List<Book> bookList = bookService.queryBook(name, author, publisher);
+
+        return bookList;
+    }
+
     //根据图书id，查询图书信息
     @RequestMapping("/query-BookInfo-ById.do")
     @ResponseBody
@@ -69,10 +79,6 @@ public class BookController {
     @RequestMapping("/updateBookById.do")
     @ResponseBody
     public Boolean updataBookById(Book book) {
-        System.out.println("============controller===========");
-        System.out.println(book);
-        System.out.println("============controller===========");
-
         Boolean flag = bookService.updateBookById(book);
 
         return flag;
@@ -83,10 +89,7 @@ public class BookController {
     @ResponseBody
     public Boolean bookRegister(Book book){
 
-
-
         Boolean flag = bookService.bookAdd(book);
-        System.out.println("---------------\n" + flag);
 
         return flag;
     }

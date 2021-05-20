@@ -43,14 +43,10 @@ public class BookServiceImpl implements BookService {
     @Override
     public Boolean updateBookById(Book book) {
         Boolean flag = true;
-
         int result = bookDao.updateBookById(book);
-
         if (result != 1) {
             flag = false;
         }
-
-
         return flag;
     }
 
@@ -97,6 +93,15 @@ public class BookServiceImpl implements BookService {
         System.out.println("=======================================");
 
         return voList;
+    }
+
+    @Override
+    public List<Book> queryBook(String name, String author, String publisher) {
+        List<Book> bookList= bookDao.queryBook(name, author, publisher);
+        for (Book book:bookList ) {
+            System.out.println(":::::"+book);
+        }
+        return  bookList;
     }
 
 

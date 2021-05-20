@@ -126,4 +126,30 @@
 
 
     </select>
+
+    <select id="queryBook" resultType="Book">
+        select
+            id,
+            bId,
+            name,
+            ISBN,
+            author,
+            price,
+            publisher,
+            pub_time,
+            storage_time,
+            amount
+        from tbl_books
+        where 1=1
+        <if test="name != null and name !='' ">
+            and name like "%" #{name} "%"
+        </if>
+        <if test="author != null and author !='' ">
+            and author like "%" #{author} "%"
+        </if>
+        <if test="publisher != null and publisher !='' ">
+            and publisher like "%" #{publisher} "%"
+        </if>
+
+    </select>
 </mapper>

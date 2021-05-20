@@ -48,10 +48,7 @@ public class ApplicationController {
 
         Teacher teacher = (Teacher) request.getSession().getAttribute("tch");
         String teacher_id = teacher.getId();    //申请教师id
-
         Boolean flag = applicationService.addAppli(teacher_id, book_id, appli_amount, class_id, kuchun_amount);
-
-        System.out.println((flag) ? "申请成功" : "申请失败");
 
         return flag;
     }
@@ -90,7 +87,6 @@ public class ApplicationController {
         * */
 
         Boolean flag = applicationService.agreeAppli(id,grant_place, grant_time);
-        System.out.println(flag+ "111111111111111");
 
         return flag;
     }

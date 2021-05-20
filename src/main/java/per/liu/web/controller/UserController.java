@@ -47,8 +47,6 @@ public class UserController {
     public Map<String, Object> login(String identity, String loginAct, String loginPwd, HttpServletRequest request) {
         //用于存放返回值
         Map<String, Object> map = new HashMap<>();
-        System.out.println("进入到验证登录操作");
-        System.out.println("identity:" + identity + "\nloginAct:" + loginAct + "\nloginPwd:" + loginPwd);
 
         try {
             /*
@@ -132,7 +130,6 @@ public class UserController {
     @ResponseBody
     public Boolean changePwd(String loginPwd, HttpServletRequest request) {
         Boolean flag = false;
-        System.out.println("controller层   这里是更改用户密码");
 
         String identity = (String) request.getSession().getAttribute("identity");
         System.out.println(identity);
@@ -191,10 +188,7 @@ public class UserController {
     @ResponseBody
     public Boolean addStudent(Student student){
 
-        System.out.println(student);
-
         Boolean flag = studentService.addStudent(student);
-
 
         return flag;
     }

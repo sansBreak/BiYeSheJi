@@ -108,14 +108,9 @@ public class ApplicationServiceImpl implements ApplicationService {
 
         int result = applicationDao.agreeAppli(id, "1", grant_place, grant_time);
 
-
-
         if (result != 1) {
             flag = false;
         }
-        System.out.println(flag+"5555555555555555");
-
-
         return flag;
     }
 

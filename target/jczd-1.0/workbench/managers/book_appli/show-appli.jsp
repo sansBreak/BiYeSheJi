@@ -282,7 +282,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h3 class="modal-title" id="myModalLabel" style="font-weight: bolder">编辑图书信息</h3>
+                <h3 class="modal-title" id="myModalLabel" style="font-weight: bolder">审批申请</h3>
             </div>
             <div class="form-group" style="width: 60%;margin-top: 30px">
                 <label for="grant_place" class="col-sm-4 control-label">领书地点 <span style="color: red">*</span></label>

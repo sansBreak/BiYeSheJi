@@ -30,4 +30,9 @@ public interface BookDao {
     //根据学生班级查询，已通过审批的图书信息，即学生即将领到的书籍
     List<ApplicationVo> queryReceiveBooks(@Param("classId")String classId,
                                           @Param("status")String status);
+
+    //搜索
+    List<Book> queryBook(@Param("name")String name,
+                         @Param("author")String author,
+                         @Param("publisher")String publisher);
 }

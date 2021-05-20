@@ -146,6 +146,11 @@
 
             });
 
+            //点击搜索按钮
+            $("#searchBtn").click(function () {
+                queryBook();
+                document.getElementById("ss-form").reset();
+            });
             /*-----------------------------------------------------------*/
             //为全选的复选框绑定事件
             $("#qx").click(function () {
@@ -190,6 +195,43 @@
                     }
                 });
             }
+
+            //搜索
+            function queryBook() {
+                $.ajax({
+                    url: "workbench/book/query-Book.do",
+                    //规定要发送到服务器的数据，可以是：string， 数组，多数是 json
+                    data: {
+                        "name": $.trim($("#search-name").val()),
+                        "author": $.trim($("#search-author").val()),
+                        "publisher": $.trim($("#search-publisher").val()),
+                    },
+                    type: "post",
+                    dataType: "json",
+                    //返回结果是个list集合
+                    success: function (data) {
+                        var html = "";
+                        $.each(data, function (i, n) {
+                            //html+="<option value='"+n.id+"'>"+n.name+"</option>"
+
+                            html += "<tr class='text-c'>";
+                            html += '<td><input type="checkbox" name="xz" value="' + n.id + '"/></td>';
+                            html += "<td>" + n.id + "</td>";
+                            html += "<td>" + n.bId + "</td>";
+                            html += "<td>" + n.name + "</td>";
+                            html += "<td>" + n.isbn + "</td>";
+                            html += "<td>" + n.author + "</td>";
+                            html += "<td>" + n.price + "</td>";
+                            html += "<td>" + n.publisher + "</td>";
+                            html += "<td>" + n.pub_time + "</td>";
+                            html += "<td>" + n.storage_time + "</td>";
+                            html += "<td>" + n.amount + "</td>";
+                            html += "</tr>";
+                        });
+                        $("#infoBody").html(html);
+                    }
+                });
+            }
         });
     </script>
 
@@ -202,21 +244,60 @@
 
 <div class="page-container">
 
-    <div class="btn-group" style="position: relative;bottom: 5px ;top: 18%;">
-        <button type="button" class="btn btn-primary" id="applyBookBtn"><span class="glyphicon glyphicon-plus"></span>
-            申请图书
-        </button>
+    <%--搜索框--%>
+    <div class="btn-toolbar" role="toolbar" style="height: 80px;">
+        <form class="form-inline" role="form" style="position: relative;top: 8%; left: 5px;" id="ss-form">
+            <button type="button" class="btn btn-primary" id="applyBookBtn"><span class="glyphicon glyphicon-plus"></span>
+                申请图书
+            </button>
+
+            <div class="pull-right" style="padding-right: 20px">
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon">教材名称</div>
+                        <input class="form-control" type="text" id="search-name">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon">作者</div>
+                        <input class="form-control" type="text" id="search-author">
+                    </div>
+                </div>
+
+                <div class="form-group ">
+                    <div class="input-group">
+                        <div class="input-group-addon">出版社</div>
+                        <input class="form-control" type="text" id="search-publisher"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group" >
+                        <button type="button" class="btn btn-primary" id="searchBtn">查询</button>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+        </form>
     </div>
+
+
 
     <!--表格正文-->
     <div class="mt-5">
-        <table class="table  table-bordered table-hover table-striped ">
+        <table ID="mytable" class="table  table-bordered table-hover table-striped ">
             <thead>
             <tr class="text-c bc-blue">
                 <th><input id="qx" type="checkbox"/></th>
                 <th>ID</th>
-                <th>教材编号</th>
-                <th>教材名称</th>
+                <th >教材编号</th>
+                <th >教材名称</th>
                 <th>ISBN号</th>
                 <th>作者（主编）</th>
                 <th>教材单价</th>

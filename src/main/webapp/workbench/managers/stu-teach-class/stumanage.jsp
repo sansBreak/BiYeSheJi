@@ -310,8 +310,6 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
     }
 </script>
 
-
-
 <div >
     <h2 style="text-align: center;">学生 信息</h2>
 </div>

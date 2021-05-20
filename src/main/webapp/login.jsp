@@ -128,7 +128,7 @@
         </div>
 
         <!--中间放个div，用于放置一个竖线-->
-        <div class="col-md-1 col-sm-0" style="height: 400px;border-right:1px dashed #8B8682;"></div>
+        <div class="col-md-1 col-sm-0" style="height: 450px;border-right:1px dashed #8B8682;"></div>
 
         <!--右侧-->
         <div class="col-md-5 col-md-offset-1 col-sm-3"
